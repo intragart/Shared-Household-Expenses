@@ -1,0 +1,85 @@
+/* TODO: Remove Debug Colors */
+.nav_link {
+    text-align: left;
+    padding-left: 20px;
+    /* background-color: red; */
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    transition: var(--trans-time) ease all;
+}
+
+.nav_link,
+.footer_link,
+#nav_footer {
+    color: #ffffff;
+}
+
+.nav_link:hover {
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+}
+
+#navigation {
+    /* background-color: beige; */
+    background-image: url("/content/img/navigation_background.jpg");
+    background-position: left;
+    background-size: cover;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    box-shadow: 0 0 5px 0;
+}
+
+#nav_blur {
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 2000px rgba(0, 0, 0, .5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+#nav_header {
+    /* background-color: gray; */
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+#nav_logo {
+    width: 250px;
+    height: 75px;
+    /* background-color: aquamarine; */
+    display: block;
+}
+
+#nav_body {
+    /* background-color: black; */
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    margin-bottom: 35px;
+}
+
+#nav_footer {
+    /* background-color: yellow; */
+    font-size:8pt;
+    bottom: 0em;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    position: absolute;
+    line-height: 35px;
+    justify-content: center;
+}

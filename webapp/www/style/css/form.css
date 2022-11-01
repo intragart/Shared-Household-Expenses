@@ -1,0 +1,203 @@
+form {
+    width: 100%;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/**********************************************************
+The following code partially contains contents from  another source.
+
+Title: CSS-only Material Inputs
+Author: Lewis Robinson
+Date: February 12, 2017
+Availability: https://codepen.io/lewisvrobinson/pen/EyZwjR
+
+Copyright (c) 2022 by Lewis Robinson (https://codepen.io/lewisvrobinson/pen/EyZwjR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+***********************************************************/
+
+input,
+select {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: none;
+    font-size: 12pt;
+    color: var(--tmp-color);
+    padding: 20px 10px 10px 5px;
+    display: block;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--tmp-color);
+    flex: none;
+}
+
+label {
+    color: var(--tmp-color);
+    font-size: 12pt;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 10px;
+    top: 25px;
+    transition: var(--trans-time) ease all;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: 0px;
+    font-size: 10pt;
+    color: var(--hl-color);
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 2px;
+    top: -1px;
+    background: var(--hl-color);
+    transition: var(--trans-time) ease all;
+    left: 0%;
+}
+
+input:focus ~ .bar {
+    width: 100%;
+}
+
+/****************
+* END OF CITATION
+****************/
+
+.form-row {
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.input-100,
+.input-80,
+.input-70,
+.input-60,
+.input-50,
+.input-30,
+.input-20,
+.input-10 {
+    padding: 5px;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+}
+
+.input-100 {
+    width: 100%;
+    /* background-color: goldenrod; */
+    /* TODO: Remove Debug Backgrounds */
+}
+
+.input-80 {
+    width: 80%;
+    /* background-color: blue; */
+}
+
+.input-70 {
+    width: 70%;
+    /* background-color: blue; */
+}
+
+.input-60 {
+    width: 60%;
+    /* background-color: yellowgreen; */
+}
+
+.input-50 {
+    width: 50%;
+    /* background-color: green; */
+}
+
+.input-30 {
+    width: 30%;
+    /* background-color: burlywood; */
+}
+
+.input-20 {
+    width: 20%;
+    /* background-color: cadetblue; */
+}
+
+.input-10 {
+    width: 10%;
+    /* background-color: brown; */
+}
+
+.input-l {
+    text-align: left;
+}
+
+.input-r {
+    text-align: right;
+}
+
+.btn {
+    all: unset;
+    background: var(--tmp-color);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    outline: none;
+    cursor: pointer;
+    transition: var(--trans-time) ease all;
+
+}
+
+.btn-positive {
+    background: var(--hl-color);
+}
+
+input[type=submit]:disabled,
+button:disabled {
+    cursor: not-allowed;
+    background: var(--tmp-color-2);
+}
+
+.btn:hover,
+.btn:focus,
+.btn:focus-visible {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.74);
+}
+
+input.invalid ~ label {
+    top: 0px;
+    font-size: 10pt;
+    color: var(--neg-color);
+}
+
+input.invalid ~ .bar {
+    width: 100%;
+    background: var(--neg-color);
+}
