@@ -14,6 +14,10 @@
     display: inline-block;
 }
 
+.saldo-max {
+    background-color: var(--tmp-color-2);
+}
+
 .saldo-sum {
     font-weight: bold;
     font-size: 26pt;

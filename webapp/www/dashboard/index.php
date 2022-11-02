@@ -23,9 +23,9 @@
             <div id="content">
                 <h1>Dashboard</h1>
                 <hr class="sep">
-                <h2>Aktueller Dispo</h2>
+                <h2>Aktuelle Ausgabendifferenz</h2>
                 <div class="card-holder">
-                <div class="saldo">
+                    <div class="saldo">
                         <div class="saldo-sum">
                             15.000,52 €
                         </div>
@@ -33,9 +33,9 @@
                             Alice
                         </div>
                     </div>
-                    <div class="saldo">
+                    <div class="saldo saldo-max">
                         <div class="saldo-sum">
-                            - - -
+                            Referenz
                         </div>
                         <div class="saldo-name">
                             Bob
