@@ -42,7 +42,7 @@
                         </div>
                     </div>
         	    </div>
-                <h2>Umsätze der letzten 30 Tage</h2>
+                <h2>Ausgaben der letzten 30 Tage</h2>
                 <table class="maintable">
                     <tr class="table-head">
                         <th>Artikel</th>

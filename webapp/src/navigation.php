@@ -18,7 +18,7 @@
             </a>
             <a href="/all">
                 <div class="nav_link">
-                    Alle Umsätze
+                    Alle Ausgaben
                 </div>
             </a>
             <a href="/settings">
