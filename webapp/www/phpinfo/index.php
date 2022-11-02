@@ -2,8 +2,8 @@
 <html lang="de">
     <head>
         <title>PHP Info - Shared Household Expenses</title>
-        <link type="text/css" rel="stylesheet" href="/css/general.css">
-        <link type="text/css" rel="stylesheet" href="/css/navigation.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/general.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/navigation.css">
         <meta charset="UTF-8">
         <meta name="keywords" content="">
         <meta name="description" content="">
