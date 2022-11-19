@@ -14,12 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// Get all Table rows that are in class 'table-row' and add an event listener to each one
-// let normalTableRows = document.querySelectorAll("tr[class='table-row']");
-// for (i = 0; i < normalTableRows.length; i++) {
-//     document.addEventListener("click", showHideTableDetails);
-// }
-
 function showHideTableDetails(index) {
     // gets the table-details-row for the correct index and toggles the hidden class on or off
     // depending on current state
@@ -27,7 +21,30 @@ function showHideTableDetails(index) {
     let detailRowClasses = detailRow.className.split(' ');
 
     if (detailRowClasses.includes("hidden")) {
-        // Details are hidden at the moment. Make them visible.
+        // Details are hidden at the moment.
+
+        // Request Details
+        let request = new XMLHttpRequest();
+        request.open('GET', '/script/getDashboardDetails.php?index='+index);
+        request.send();
+
+        // Response received
+        request.onload = function() {
+            if (request.status == 200) {
+                // Successful request. Add body to innerHTML or current details
+                document.getElementById("details-content-"+index).innerHTML = request.response;
+            } else {
+                // Request hasn't benn successful, inform user
+                document.getElementById("details-content-"+index).innerHTML = "Received: "+request.status+": "+request.statusText;
+            }
+        };
+
+        // Request failed
+        request.onerror = function() {
+            document.getElementById("details-content-"+index).innerHTML = "Request failed.";
+        };
+
+        // Make Details visible
         detailRow.className = detailRow.className.replace(" hidden", "");
     } else {
         // Details are visible. Hide them.

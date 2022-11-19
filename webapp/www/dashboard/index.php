@@ -15,6 +15,11 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
+<?php
+    // Get the informations to connect to database
+    require("../../src/get_db_login.php");
+    $db_settings = get_db_login("viewer");
+?>
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -40,25 +45,50 @@
             <div id="content">
                 <h1>Dashboard</h1>
                 <hr class="sep">
-                <h2>Aktuelle Ausgabendifferenz</h2>
-                <div class="card-holder">
-                    <div class="saldo">
-                        <div class="saldo-sum">
-                            15.000,52 €
-                        </div>
-                        <div class="saldo-name">
-                            Alice
-                        </div>
-                    </div>
-                    <div class="saldo saldo-max">
-                        <div class="saldo-sum">
-                            Referenz
-                        </div>
-                        <div class="saldo-name">
-                            Bob
-                        </div>
-                    </div>
-        	    </div>
+                <h2>Differenz zum größten Anteil</h2>
+                <?php
+                    try {
+                        // Connect to database and select the dashboard data
+                        $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);     
+                        
+                        // get the sum of all user contributions from active users
+                        $sql = "SELECT SUM(sum_contributions) AS sum_all FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
+                        $res = $db->query($sql);
+                        $contribution_sum = $res->fetch_row()[0];
+
+                        // get the maximum sum of all active users
+                        $sql = "SELECT MAX(sum_user) AS max_user_sum FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
+                        $res = $db->query($sql);
+                        $contribution_max = $res->fetch_row()[0];
+
+                        // get each active users contribution
+                        $sql = "SELECT * FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'"; // TODO: Auf 30 Tage ändern
+                        $res = $db->query($sql);
+
+                        // Display the received data in table
+                        echo "<div class=\"card-holder\">\n";
+                        while ($row = $res->fetch_assoc()) {
+                            $difference = $contribution_max - $row['sum_user'];
+                            if ($difference == 0) {
+                                echo "<div class=\"saldo saldo-max\">\n";
+                            } else {
+                                echo "<div class=\"saldo\">\n";
+                            }
+                            echo "<div class=\"saldo-sum\">\n";
+                            echo number_format($difference, 2)." €\n";
+                            echo "</div>\n";
+                            echo "<div class=\"saldo-name\">\n";
+                            echo $row['username']."\n";
+                            echo "</div>\n";
+                            echo "</div>\n";
+                        }
+                        echo "</div>\n";
+
+                        $db->close();
+                    } catch (Exception $ex) {
+                        echo "<p>Error while querying data from database.</p>";
+                    }
+                ?>
                 <h2>Ausgaben der letzten 30 Tage</h2>
                 <table class="maintable">
                     <tr class="table-head">
@@ -68,20 +98,31 @@
                         <th>Beteiligte</th>
                         <th>Gesamt</th>
                     </tr>
-                    <?php 
-                        for ($i = 0; $i < 50; $i++) {
-                            echo "<tr class='table-row' id='row-".$i."' onclick='showHideTableDetails(".$i.");'>";
-                            echo "<td>Einkauf lorem ipsum</td>";
-                            echo "<td>E-Center</td>";
-                            echo "<td>02.11.2022</td>";
-                            echo "<td>Alice & Bob</td>";
-                            echo "<td>10,00 €</td>";
-                            echo "</tr>";
-                            echo '<tr class="table-details hidden" id="details-'.$i.'">';
-                            echo ' <td colspan="6">';
-                            echo 'Alice: 7,50 €<br />Bob: 2,50 €<br /><br />Bemerkung';
-                            echo '</td>';
-                            echo '</tr>';
+                    <?php
+                        try {
+                            // Connect to database and select the dashboard data
+                            $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);                  
+                            $sql = "SELECT * FROM shared_household_expenses.dashboard WHERE date >= DATE(NOW()) - INTERVAL 30000 DAY"; // TODO: Auf 30 Tage ändern
+                            $res = $db->query($sql);
+
+                            // Display the received data in table
+                            while ($row = $res->fetch_assoc()) {
+                                echo "<tr class='table-row' id='purchase-".$row['purchase_id']."' onclick='showHideTableDetails(".$row['purchase_id'].");'>";
+                                echo "<td>".$row['article']."</td>";
+                                echo "<td>".$row['retailer']."</td>";
+                                echo "<td>".$row['date']."</td>";
+                                echo "<td>".$row['contributor']."</td>";
+                                echo "<td>".$row['amount']." €</td>";
+                                echo "</tr>";
+                                echo '<tr class="table-details hidden" id="details-'.$row['purchase_id'].'">';
+                                echo ' <td colspan="6" id="details-content-'.$row['purchase_id'].'">';
+                                echo '</td>';
+                                echo '</tr>';
+                            }
+                            $db->close();
+                        } catch (Exception $ex) {
+                            echo "sadfsdfsadfasdf";
+                            echo $ex->getMessage();
                         }
                     ?>
                 </table>
