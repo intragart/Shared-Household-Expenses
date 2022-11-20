@@ -3,7 +3,8 @@ USE `shared_household_expenses`;
 CREATE TABLE `retailer` (
 	`retailer_id` INT NOT NULL AUTO_INCREMENT,
 	`retailer` VARCHAR(255) NOT NULL,
-	PRIMARY KEY (`retailer_id`)
+	PRIMARY KEY (`retailer_id`),
+	UNIQUE INDEX `retailer` (`retailer`)
 );
 
 CREATE TABLE `purchase` (
@@ -23,7 +24,9 @@ CREATE TABLE `user` (
 	`passwd_hash` VARCHAR(255) NOT NULL,
 	`start_value` DECIMAL(20,2) NOT NULL DEFAULT '0.00',
 	`account_active` SET('READ_WRITE','READ_ONLY','LOCKED','DEACTIVATED') NOT NULL DEFAULT 'READ_WRITE',
-	PRIMARY KEY (`user_id`)
+	PRIMARY KEY (`user_id`),
+	UNIQUE INDEX `username` (`username`),
+	UNIQUE INDEX `pretty_name` (`pretty_name`)
 );
 
 CREATE TABLE `contribution` (
