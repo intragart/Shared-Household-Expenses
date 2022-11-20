@@ -17,6 +17,7 @@
 // listen for changes inside the form
 const formOnPage = document.querySelector("form");
 formOnPage.addEventListener("keyup", checkForm);
+formOnPage.addEventListener("click", checkForm);
 
 function checkForm() {
     // Checks the form using multiple functions. If all functions return true
@@ -44,11 +45,10 @@ function checkDependencies() {
     // false
 
     // get all input elements that have the attribute pattern
-    const dependsInputs = document.querySelectorAll('input[depends]');
+    const dependsInputs = document.querySelectorAll('input[depends], select[depends]');
 
-    // set true by default. Becomes false as soon as one element doesn't match their
-    // pattern regardless of char count
-    let dependenciesOK = true;
+    // store elements that are not valid with their dependencies
+    let invalidElements = [];
 
     for (i = 0; i < dependsInputs.length; i++) {
         // get current element
@@ -67,8 +67,8 @@ function checkDependencies() {
 
                     let extElement = document.getElementById(dependsIds[z]);
                     if (extElement.value.length > 0) {
-                        // Dependendy Element has chars, remove invalid class if set
-                        extElement.className.replace(" invalid", "");
+                        // Dependency Element has chars, remove invalid class if set
+                        extElement.className = extElement.className.replace(" invalid", "");
 
                     }
                     else {
@@ -77,21 +77,30 @@ function checkDependencies() {
                         if (!extElement.className.includes("invalid")) {
                             extElement.className = element.className + " invalid";
                         }
-                        dependenciesOK = false;
 
+                        if(!invalidElements.includes(dependsIds[z])) {
+                            invalidElements.push(dependsIds[z]);
+                        }
                     }
                 }
             } else {
                 // Element doesn't have any chars. Remove invalid class from dependencies if set
+                // Only remove if element hasn't been invalid in the current iteration
+
                 for (z = 0; z < dependsIds.length; z++) {
-                    let extElement = document.getElementById(dependsIds[z]);
-                    extElement.className.replace(" invalid", "");
+                    if(!invalidElements.includes(dependsIds[z])) {
+                        let extElement = document.getElementById(dependsIds[z]);
+                        extElement.className = extElement.className.replace(" invalid", "");
+                    }
                 }
             }
         }
     }
 
-    return dependenciesOK;
+    if(invalidElements.length == 0) {
+        return true;
+    }
+    return false;
 }
 
 function checkPatterns() {
@@ -104,6 +113,9 @@ function checkPatterns() {
 
     // get all input elements that have the attribute pattern
     const patternInputs = document.querySelectorAll('input[pattern]');
+
+    // get all select elements that are required
+    const requieredSelect = document.querySelectorAll('select');
 
     // set true by default. Becomes false as soon as one element doesn't match their
     // pattern regardless of char count
@@ -131,6 +143,16 @@ function checkPatterns() {
                     element.className = element.className + " invalid";
                 }
                 formCompleteNoErrors = false;
+            }
+        }
+    );
+
+    requieredSelect.forEach(
+        function(element) {
+            if (!element.hasAttribute("optional")) {
+                if (element.value.length == 0) {
+                    formCompleteNoErrors = false;
+                }
             }
         }
     );

@@ -43,6 +43,10 @@ function addRow() {
     // make new rows optional by replacing regex '+' with '*'
     newRow = newRow.replaceAll("+", "*");
 
+    // Enable additional Dropdowns to remove value and make them not required
+    newRow = newRow.replaceAll("disabled=\"\" selected=\"\" value=\"\" hidden=\"\"", "selected=\"\" value=\"\"");
+    newRow = newRow.replaceAll("<select ", "<select optional ");
+
     // Add dependencies to new rows - new rows are not requiered by default in application
     // logic since pattern '+' is replaced by '*' but they become required as soon as one or more
     // of the 'depends' attribute form inputs have a value

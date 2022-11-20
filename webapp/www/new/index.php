@@ -15,6 +15,34 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
+<?php
+    // Get the informations to connect to database
+    require("../../src/get_db_login.php");
+    $db_settings = get_db_login("viewer");
+
+    try {
+        // Connect to database and select the article list
+        $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);     
+        
+        // Select the article list
+        $sql = "SELECT article FROM article_list";
+        $article_list = $db->query($sql);
+
+        // Select all retailers
+        $sql = "SELECT * FROM retailer ORDER BY retailer";
+        $retailer_list = $db->query($sql);
+
+        // Select active users
+        $sql = "SELECT user_id, username, pretty_name FROM user_contribution WHERE account_active != 'DEACTIVATED' ORDER BY username ASC";
+        $user_list = $db->query($sql);
+
+        $db->close();
+    } catch (Exception $ex) {
+        $article_list = false;
+        $retailer_list = false;
+        $user_list = false;
+    }
+?>
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -41,20 +69,40 @@
             <div id="content">
                 <h1 id="test123">Neuen Eintrag erfassen</h1> <!-- TODO: ID entfernen -->
                 <hr class="sep">
-                <form action="/new/insert.php" target="_self" method="post" autocomplete="off" novalidate>
+                <form action="/new/insert.php" target="_self" method="post" autocomplete="on" novalidate>
                     <div class="form-row">
                         <h2>Allgemein</h2>
                     </div>
                     <div class="form-row">
                         <div class="input-100 input-l">
-                            <input type="text" id="inputArticle" name="inputArticle" pattern="^[\w äöüÄÖÜß&,\._-]+$" required autofocus>
+                            <datalist id="article-list">
+                                <?php
+                                    if (!($article_list === false)) {
+                                        // Fill in the autocomplete data
+                                        while ($row = $article_list->fetch_assoc()) {
+                                            echo "<option value=\"".$row['article']."\" />\n";
+                                        }
+                                    }
+                                ?>
+                            </datalist>
+                            <input type="text" list="article-list" id="inputArticle" name="inputArticle" pattern="^[\w äöüÄÖÜß&,\._-]+$" required autofocus>
                             <span class="bar"></span>
                             <label for="inputArticle">Artikel</label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="input-70 input-l">
-                            <input type="text" id="inputDealer" name="inputDealer" pattern="^[\w äöüÄÖÜß&,\._-]+$" required>
+                            <datalist id="retailer-list">
+                                <?php
+                                    if (!($retailer_list === false)) {
+                                        // Fill in the autocomplete data
+                                        while ($row = $retailer_list->fetch_assoc()) {
+                                            echo "<option value=\"".$row['retailer']."\" dbID=\"".$row['retailer_id']."\" />\n";
+                                        }
+                                    }
+                                ?>
+                            </datalist>
+                            <input type="text" list="retailer-list" id="inputDealer" name="inputDealer" pattern="^[\w äöüÄÖÜß&,\._-]+$" required>
                             <span class="bar"></span>
                             <label for="inputDealer">Händler</label>
                         </div>
@@ -68,8 +116,33 @@
                         <h2>Kostenverteilung</h2>
                     </div>
                     <div class="form-row" id="row0">
-                        <div class="input-50 input-l">
-                            <input type="text" id="inputUser0" name="inputUser0" pattern="^[\w äöüÄÖÜß&,\._-]+$" required>
+                        <div class="input-50 input-l">                          
+                            <select id="inputUser0" name="inputUser0" required>
+                                <option disabled="" selected="" value="" hidden=""></option>
+                                <?php
+                                    // Store valid display_names for regex later on
+                                    $display_names = array();
+                                    $i = 0;
+
+                                    if (!($user_list === false)) {
+                                        // Fill in the autocomplete data
+                                        while ($row = $user_list->fetch_assoc()) {
+                                            // Show pretty_name if availabile, otherwise username
+                                            $display_name = "";
+                                            if ($row['pretty_name'] != "") {
+                                                $display_name = $row['pretty_name'];
+                                            } else {
+                                                $display_name = $row['username'];
+                                            }
+                                            $display_names[$i] = $display_name;
+                                            $i++;
+                                            echo "<option value=\"".$row['user_id']."\">".$display_name."</option>\n";
+                                        }
+                                    }
+
+                                    unset($i);
+                                ?>
+                            </select>
                             <span class="bar"></span>
                             <label for="inputUser0">Name</label>
                         </div>
