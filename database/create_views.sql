@@ -10,7 +10,7 @@ GROUP BY purchase.purchase_id
 ORDER BY purchase.date DESC, purchase.article ASC;
 
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_contribution` AS
-SELECT contribution.user_id, user.username, user.start_value, SUM(contribution.amount) AS sum_contributions, user.start_value + SUM(contribution.amount) AS sum_user, user.account_active
+SELECT contribution.user_id, user.username, user.pretty_name, user.start_value, SUM(contribution.amount) AS sum_contributions, user.start_value + SUM(contribution.amount) AS sum_user, user.account_active
 FROM contribution
 RIGHT JOIN user ON contribution.user_id = user.user_id
 GROUP BY contribution.user_id
@@ -21,3 +21,9 @@ SELECT contribution.purchase_id, contribution.contribution_id, user.username, co
 FROM contribution
 LEFT JOIN user ON contribution.user_id = user.user_id
 ORDER BY purchase_id ASC, username ASC, contribution_id ASC;
+
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `article_list` AS
+SELECT article, COUNT(*) AS quantity
+FROM purchase
+GROUP BY article
+ORDER BY article ASC;
