@@ -54,35 +54,45 @@
                         // get the sum of all user contributions from active users
                         $sql = "SELECT SUM(sum_contributions) AS sum_all FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
                         $res = $db->query($sql);
-                        $contribution_sum = $res->fetch_row()[0];
+                        $contribution_sum = 0;
+                        if ($res->num_rows > 0) {
+                            $contribution_sum = $res->fetch_row()[0];
+                        }
 
                         // get the maximum sum of all active users
                         $sql = "SELECT MAX(sum_user) AS max_user_sum FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
                         $res = $db->query($sql);
-                        $contribution_max = $res->fetch_row()[0];
+                        $contribution_max = 0;
+                        if ($res->num_rows > 0) {
+                            $contribution_max = $res->fetch_row()[0];
+                        }
 
                         // get each active users contribution
-                        $sql = "SELECT * FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'"; // TODO: Auf 30 Tage ändern
+                        $sql = "SELECT * FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
                         $res = $db->query($sql);
 
-                        // Display the received data in table
-                        echo "<div class=\"card-holder\">\n";
-                        while ($row = $res->fetch_assoc()) {
-                            $difference = $contribution_max - $row['sum_user'];
-                            if ($difference == 0) {
-                                echo "<div class=\"saldo saldo-max\">\n";
-                            } else {
-                                echo "<div class=\"saldo\">\n";
+                        // Create Cards if data has been received
+                        if ($res->num_rows > 0) {
+                            echo "<div class=\"card-holder\">\n";
+                            while ($row = $res->fetch_assoc()) {
+                                $difference = $contribution_max - $row['sum_user'];
+                                if ($difference == 0) {
+                                    echo "<div class=\"saldo saldo-max\">\n";
+                                } else {
+                                    echo "<div class=\"saldo\">\n";
+                                }
+                                echo "<div class=\"saldo-sum\">\n";
+                                echo number_format($difference, 2)." €\n";
+                                echo "</div>\n";
+                                echo "<div class=\"saldo-name\">\n";
+                                echo $row['username']."\n";
+                                echo "</div>\n";
+                                echo "</div>\n";
                             }
-                            echo "<div class=\"saldo-sum\">\n";
-                            echo number_format($difference, 2)." €\n";
                             echo "</div>\n";
-                            echo "<div class=\"saldo-name\">\n";
-                            echo $row['username']."\n";
-                            echo "</div>\n";
-                            echo "</div>\n";
+                        } else {
+                            echo "<p>No Data.</p>";
                         }
-                        echo "</div>\n";
 
                         $db->close();
                     } catch (Exception $ex) {
@@ -90,20 +100,26 @@
                     }
                 ?>
                 <h2>Ausgaben der letzten 30 Tage</h2>
-                <table class="maintable">
-                    <tr class="table-head">
-                        <th>Artikel</th>
-                        <th>Händler</th>
-                        <th>Datum</th>
-                        <th>Beteiligte</th>
-                        <th>Gesamt</th>
-                    </tr>
                     <?php
                         try {
                             // Connect to database and select the dashboard data
                             $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);                  
-                            $sql = "SELECT * FROM shared_household_expenses.dashboard WHERE date >= DATE(NOW()) - INTERVAL 30000 DAY"; // TODO: Auf 30 Tage ändern
+                            $sql = "SELECT * FROM shared_household_expenses.dashboard WHERE date >= DATE(NOW()) - INTERVAL 30 DAY";
                             $res = $db->query($sql);
+
+                            // Create Table Head if data has been received
+                            if ($res->num_rows > 0) {
+                                echo "<table class=\"maintable\">\n";
+                                echo "<tr class=\"table-head\">\n";
+                                echo "<th>Artikel</th>\n";
+                                echo "<th>Händler</th>\n";
+                                echo "<th>Datum</th>\n";
+                                echo "<th>Beteiligte</th>\n";
+                                echo "<th>Gesamt</th>\n";
+                                echo "</tr>\n";
+                            } else {
+                                echo "<p>No Data.</p>";
+                            }
 
                             // Display the received data in table
                             while ($row = $res->fetch_assoc()) {
@@ -119,13 +135,19 @@
                                 echo '</td>';
                                 echo '</tr>';
                             }
+
+                            // Close Table
                             $db->close();
+
+                            // Close Table if data has been received
+                            if ($res->num_rows > 0) {
+                                echo "</table>";
+                            }
+
                         } catch (Exception $ex) {
-                            echo "sadfsdfsadfasdf";
-                            echo $ex->getMessage();
+                            echo "<p>Daten konnten nicht abgerufen werden</p>";
                         }
                     ?>
-                </table>
                 <br />
             </div>
         </div>
