@@ -2,8 +2,8 @@ USE `shared_household_expenses`;
 
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `dashboard` AS
 SELECT purchase.purchase_id, purchase.article, retailer.retailer, purchase.date, SUM(contribution.amount) AS amount, group_concat(user.username ORDER BY user.username ASC SEPARATOR ' & ') AS contributor
-FROM contribution
-LEFT JOIN purchase ON contribution.purchase_id = purchase.purchase_id
+FROM purchase
+LEFT JOIN contribution ON purchase.purchase_id = contribution.purchase_id
 LEFT JOIN retailer ON purchase.retailer_id = retailer.retailer_id
 LEFT JOIN user ON contribution.user_id = user.user_id
 GROUP BY purchase.purchase_id
