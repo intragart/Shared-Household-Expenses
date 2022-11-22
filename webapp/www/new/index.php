@@ -60,6 +60,7 @@
         <script src="/script/checkForm.js" type="text/javascript" defer></script>
         <script src="/script/addRemoveRowInNew.js" type="text/javascript" defer></script>
         <script src="/script/resetToAutofocus.js" type="text/javascript" defer></script>
+        <script src="/script/submitForm.js" type="text/javascript" defer></script>
     </head>
     <body>
         <div class="left-wrapper">
@@ -69,7 +70,7 @@
             <div id="content">
                 <h1 id="test123">Neuen Eintrag erfassen</h1> <!-- TODO: ID entfernen -->
                 <hr class="sep">
-                <form action="/new/insert.php" target="_self" method="post" autocomplete="on" novalidate>
+                <form action="/new/insert.php" id="newForm" method="post" autocomplete="on" novalidate>
                     <div class="form-row">
                         <h2>Allgemein</h2>
                     </div>
@@ -165,7 +166,7 @@
                             <input id="num-rows" type="hidden" value="1">
                         </div>
                         <div class="input-80 input-r">
-                            <input class="btn btn-positive" type="submit" value="Senden" disabled>
+                            <input id="submitBtn" class="submit btn btn-positive" type="button" value="Senden" onclick="submitForm(newForm)" disabled>
                             <input class="btn" type="reset" value="Reset">
                         </div>
                     </div>

@@ -201,7 +201,7 @@ select:focus ~ .bar {
     background: var(--hl-color);
 }
 
-input[type=submit]:disabled,
+input.submit:disabled,
 button:disabled {
     cursor: not-allowed;
     background: var(--tmp-color-2);

@@ -27,11 +27,11 @@ function checkForm() {
     let checkP = checkPatterns();
     let checkD = checkDependencies();
 
-    let submitBtn = document.querySelector('input[type="submit"]');
+    let submitBtn = document.getElementById("submitBtn");
     if (checkP && checkD) {
-        submitBtn.removeAttribute("disabled")
+        submitBtn.removeAttribute("disabled");
     } else {
-        submitBtn.setAttribute("disabled", "")
+        submitBtn.setAttribute("disabled", "");
     }
 }
 
