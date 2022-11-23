@@ -19,6 +19,8 @@
     // Get the informations to connect to database
     require("../../src/get_db_login.php");
     $db_settings = get_db_login("viewer");
+
+    $php_fromdate = date("Y-m-d", strtotime("-30 day", time()));
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -101,52 +103,8 @@
                 ?>
                 <h2>Ausgaben der letzten 30 Tage</h2>
                     <?php
-                        try {
-                            // Connect to database and select the dashboard data
-                            $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);                  
-                            $sql = "SELECT * FROM shared_household_expenses.dashboard WHERE date >= DATE(NOW()) - INTERVAL 30 DAY";
-                            $res = $db->query($sql);
-
-                            // Create Table Head if data has been received
-                            if ($res->num_rows > 0) {
-                                echo "<table class=\"maintable\">\n";
-                                echo "<tr class=\"table-head\">\n";
-                                echo "<th>Artikel</th>\n";
-                                echo "<th>Händler</th>\n";
-                                echo "<th>Datum</th>\n";
-                                echo "<th>Beteiligte</th>\n";
-                                echo "<th>Gesamt</th>\n";
-                                echo "</tr>\n";
-                            } else {
-                                echo "<p>No Data.</p>";
-                            }
-
-                            // Display the received data in table
-                            while ($row = $res->fetch_assoc()) {
-                                echo "<tr class='table-row' id='purchase-".$row['purchase_id']."' onclick='showHideTableDetails(".$row['purchase_id'].");'>";
-                                echo "<td>".$row['article']."</td>";
-                                echo "<td>".$row['retailer']."</td>";
-                                echo "<td>".$row['date']."</td>";
-                                echo "<td>".$row['contributor']."</td>";
-                                echo "<td>".$row['amount']." €</td>";
-                                echo "</tr>";
-                                echo '<tr class="table-details hidden" id="details-'.$row['purchase_id'].'">';
-                                echo ' <td colspan="6" id="details-content-'.$row['purchase_id'].'">';
-                                echo '</td>';
-                                echo '</tr>';
-                            }
-
-                            // Close Table
-                            $db->close();
-
-                            // Close Table if data has been received
-                            if ($res->num_rows > 0) {
-                                echo "</table>";
-                            }
-
-                        } catch (Exception $ex) {
-                            echo "<p>Daten konnten nicht abgerufen werden</p>";
-                        }
+                        // get table html
+                        require("../script/getTable.php");
                     ?>
                 <br />
             </div>
