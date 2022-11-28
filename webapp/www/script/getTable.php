@@ -67,7 +67,7 @@
 
         // Create Table Head if data has been received
         if ($res->num_rows > 0) {
-            echo "<table class=\"maintable\">\n";
+            echo "<table table=\"maintable\" class=\"maintable\">\n";
             echo "<tr class=\"table-head\">\n";
             echo "<th>Artikel</th>\n";
             echo "<th>Händler</th>\n";
