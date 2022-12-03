@@ -81,17 +81,13 @@
 
         // Display the received data in table
         while ($row = $res->fetch_assoc()) {
-            echo "<tr class='maintable maintable-row' id='purchase-".$row['purchase_id']."' onclick='showHideTableDetails(".$row['purchase_id'].");'>";
+            echo "<tr class='maintable maintable-row' id='purchase-".$row['purchase_id']."' onclick='showPurchaseDetails(".$row['purchase_id'].");'>";
             echo "<td class=\"maintable\">".$row['article']."</td>";
             echo "<td class=\"maintable\">".$row['retailer']."</td>";
             echo "<td class=\"maintable\">".$row['date']."</td>";
             echo "<td class=\"maintable\">".$row['contributor']."</td>";
             echo "<td class=\"maintable\">".$row['amount']." €</td>";
             echo "</tr>";
-            echo '<tr class="maintable-details hidden" id="details-'.$row['purchase_id'].'">';
-            echo '<td class="maintable" colspan="6" id="details-content-'.$row['purchase_id'].'">';
-            echo '</td>';
-            echo '</tr>';
         }
 
         // Close Table if data has been received

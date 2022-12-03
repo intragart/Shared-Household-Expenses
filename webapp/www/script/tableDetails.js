@@ -14,40 +14,59 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-function showHideTableDetails(index) {
-    // gets the table-details-row for the correct index and toggles the hidden class on or off
-    // depending on current state
-    let detailRow = document.getElementById("details-"+index);
-    let detailRowClasses = detailRow.className.split(' ');
+function editPurchaseDetails(index) {
+    // gets the details-content element where the result will be shown and hide the Details
+    let detailRowContent = document.getElementById("details-content-"+index);
+    detailRowContent.innerHTML = "";
+    //showHideTableDetails(index);
 
-    if (detailRowClasses.includes("hidden")) {
-        // Details are hidden at the moment.
+    // Get the HTML and Database data to edit the current purchase
+    let request = new XMLHttpRequest();
+    request.open('GET', '/script/editPurchase.php?purchase_id='+index);
+    request.send();
 
-        // Request Details
-        let request = new XMLHttpRequest();
-        request.open('GET', '/script/getDashboardDetails.php?index='+index);
-        request.send();
+    // Response received
+    request.onload = function() {
+        if (request.status == 200) {
+            // Successful request. Add body to innerHTML or current details
+            document.getElementById("details-content-"+index).innerHTML = request.response;
+        } else {
+            // Request hasn't benn successful, inform user
+            detailRowContent.innerHTML = "Received: "+request.status+": "+request.statusText;
+        }
+    };
 
-        // Response received
-        request.onload = function() {
-            if (request.status == 200) {
-                // Successful request. Add body to innerHTML or current details
-                document.getElementById("details-content-"+index).innerHTML = request.response;
-            } else {
-                // Request hasn't benn successful, inform user
-                document.getElementById("details-content-"+index).innerHTML = "Received: "+request.status+": "+request.statusText;
-            }
-        };
+    // Request failed
+    request.onerror = function() {
+        detailRowContent.innerHTML = "Request failed.";
+    };
 
-        // Request failed
-        request.onerror = function() {
-            document.getElementById("details-content-"+index).innerHTML = "Request failed.";
-        };
+}
 
-        // Make Details visible
-        detailRow.className = detailRow.className.replace(" hidden", "");
-    } else {
-        // Details are visible. Hide them.
-        detailRow.className = detailRow.className + " hidden";
-    }
+function showPurchaseDetails(index) {
+    // Request Details
+    let request = new XMLHttpRequest();
+    request.open('GET', '/script/getPurchaseDetails.php?purchase_id='+index);
+    request.send();
+
+    // Response received
+    request.onload = function() {
+        if (request.status == 200) {
+            // Successful request. Add body to innerHTML or current details
+            document.getElementById("message-content").innerHTML = request.response;
+            document.getElementById("fullscreen-message").setAttribute("style","display: flex");
+        } else {
+            // Request hasn't benn successful, inform user
+            document.getElementById("details-content-"+index).innerHTML = "Received: "+request.status+": "+request.statusText;
+        }
+    };
+
+    // Request failed
+    request.onerror = function() {
+        document.getElementById("details-content-"+index).innerHTML = "Request failed.";
+    };
+
+    // Make Details visible
+    detailRow.className = detailRow.className.replace(" hidden", "");
+    
 }

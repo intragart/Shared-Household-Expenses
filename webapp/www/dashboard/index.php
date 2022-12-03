@@ -31,6 +31,9 @@
         <link type="text/css" rel="stylesheet" href="/style/css/navigation.css">
         <link type="text/css" rel="stylesheet" href="/style/css/cards.css">
         <link type="text/css" rel="stylesheet" href="/style/css/table.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-structure.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-simple.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <meta charset="UTF-8">
         <meta name="keywords" content="">
         <meta name="description" content="">
@@ -38,6 +41,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
         <script src="/script/tableDetails.js" type="text/javascript" defer></script>
+        <script src="/script/spanFullscreen.js" type="text/javascript" defer></script>
     </head>
     <body>
         <div class="left-wrapper">
@@ -109,5 +113,12 @@
                 <br />
             </div>
         </div>
+        <span id="fullscreen-message"> 
+            <div id="block-background" onclick="removeSpanFullscreen()"></div>
+            <div id="message-body">
+                <div id="close-fullscreen-message"><i class="material-icons disable-select" onclick="removeSpanFullscreen()">close</i></div>
+                <span id="message-content"></span> <!-- innerHTML is used to show fullscreen content using javascript -->
+            </div>
+        </span>
     </body>
 </html>

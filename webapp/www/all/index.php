@@ -38,6 +38,7 @@
         <script src="/script/tableDetails.js" type="text/javascript" defer></script>
         <script src="/script/reloadTable.js" type="text/javascript" defer></script>
         <script src="/script/searchTable.js" type="text/javascript" defer></script>
+        <script src="/script/spanFullscreen.js" type="text/javascript" defer></script>
     </head>
     <body>
         <div class="left-wrapper">
@@ -74,5 +75,12 @@
                 <br />
             </div>
         </div>
+        <span id="fullscreen-message"> 
+            <div id="block-background" onclick="removeSpanFullscreen()"></div>
+            <div id="message-body">
+                <div id="close-fullscreen-message"><i class="material-icons disable-select" onclick="removeSpanFullscreen()">close</i></div>
+                <span id="message-content"></span> <!-- innerHTML is used to show fullscreen content using javascript -->
+            </div>
+        </span>
     </body>
 </html>
