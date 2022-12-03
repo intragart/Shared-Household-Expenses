@@ -68,12 +68,12 @@
         // Create Table Head if data has been received
         if ($res->num_rows > 0) {
             echo "<table table=\"maintable\" class=\"maintable\">\n";
-            echo "<tr class=\"table-head\">\n";
-            echo "<th>Artikel</th>\n";
-            echo "<th>Händler</th>\n";
-            echo "<th>Datum</th>\n";
-            echo "<th>Beteiligte</th>\n";
-            echo "<th>Gesamt</th>\n";
+            echo "<tr class=\"maintable maintable-head\">\n";
+            echo "<th class=\"maintable\">Artikel</th>\n";
+            echo "<th class=\"maintable\">Händler</th>\n";
+            echo "<th class=\"maintable\">Datum</th>\n";
+            echo "<th class=\"maintable\">Beteiligte</th>\n";
+            echo "<th class=\"maintable\">Gesamt</th>\n";
             echo "</tr>\n";
         } else {
             echo "<p>No Data.</p>";
@@ -81,15 +81,15 @@
 
         // Display the received data in table
         while ($row = $res->fetch_assoc()) {
-            echo "<tr class='table-row' id='purchase-".$row['purchase_id']."' onclick='showHideTableDetails(".$row['purchase_id'].");'>";
-            echo "<td>".$row['article']."</td>";
-            echo "<td>".$row['retailer']."</td>";
-            echo "<td>".$row['date']."</td>";
-            echo "<td>".$row['contributor']."</td>";
-            echo "<td>".$row['amount']." €</td>";
+            echo "<tr class='maintable maintable-row' id='purchase-".$row['purchase_id']."' onclick='showHideTableDetails(".$row['purchase_id'].");'>";
+            echo "<td class=\"maintable\">".$row['article']."</td>";
+            echo "<td class=\"maintable\">".$row['retailer']."</td>";
+            echo "<td class=\"maintable\">".$row['date']."</td>";
+            echo "<td class=\"maintable\">".$row['contributor']."</td>";
+            echo "<td class=\"maintable\">".$row['amount']." €</td>";
             echo "</tr>";
-            echo '<tr class="table-details hidden" id="details-'.$row['purchase_id'].'">';
-            echo ' <td colspan="6" id="details-content-'.$row['purchase_id'].'">';
+            echo '<tr class="maintable-details hidden" id="details-'.$row['purchase_id'].'">';
+            echo '<td class="maintable" colspan="6" id="details-content-'.$row['purchase_id'].'">';
             echo '</td>';
             echo '</tr>';
         }

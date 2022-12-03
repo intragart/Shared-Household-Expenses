@@ -23,20 +23,20 @@
     text-align: left;
 }
 
-.maintable tr {
+tr.maintable {
     border: none;
     border-collapse: collapse;
     /* background-color: red; */
 }
 
-.maintable th,
-.maintable td {
+th.maintable,
+td.maintable {
     border: none;
     border-collapse: collapse;
     padding: 15px 30px;
 }
 
-.maintable .table-head {
+.maintable-head {
     background-color: var(--hl-color);
     color: white;
     text-transform: uppercase;
@@ -44,17 +44,26 @@
     top: 0;
 }
 
-.maintable .table-row {
+.maintable-row {
     cursor: pointer;
     transition: var(--trans-time) ease all;
 }
 
-.maintable .table-row:hover {
+.maintable-row:hover {
     background-color: var(--tmp-color-2);
 }
 
-.maintable .table-details {
-    border-bottom: 1px solid black;
+.maintable-details {
+    border-left: 1px solid black;
+    position: relative;
+}
+
+.edit-details {
+  position: absolute;
+  margin: 15px 30px;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
 }
   
   /* .responsive-table {
