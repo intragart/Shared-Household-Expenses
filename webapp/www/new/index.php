@@ -50,7 +50,8 @@
         <link rel="icon" type="image/x-icon" href="/content/favicon/favicon-228.png">
         <link type="text/css" rel="stylesheet" href="/style/css/general.css">
         <link type="text/css" rel="stylesheet" href="/style/css/navigation.css">
-        <link type="text/css" rel="stylesheet" href="/style/css/form.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-structure.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-detailed.css">
         <meta charset="UTF-8">
         <meta name="keywords" content="">
         <meta name="description" content="">

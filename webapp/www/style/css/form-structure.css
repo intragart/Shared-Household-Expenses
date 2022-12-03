@@ -1,0 +1,95 @@
+/*
+    Shared Household Expenses
+    Copyright (C) 2022  Marco Weingart
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+form,
+.tableControl {
+    width: 100%;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    display:inline-block;
+}
+
+.form-row {
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.input-100,
+.input-80,
+.input-70,
+.input-60,
+.input-50,
+.input-30,
+.input-20,
+.input-10 {
+    padding: 5px;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+}
+
+.input-100 {
+    width: 100%;
+    /* background-color: goldenrod; */
+    /* TODO: Remove Debug Backgrounds */
+}
+
+.input-80 {
+    width: 80%;
+    /* background-color: blue; */
+}
+
+.input-70 {
+    width: 70%;
+    /* background-color: blue; */
+}
+
+.input-60 {
+    width: 60%;
+    /* background-color: yellowgreen; */
+}
+
+.input-50 {
+    width: 50%;
+    /* background-color: green; */
+}
+
+.input-30 {
+    width: 30%;
+    /* background-color: burlywood; */
+}
+
+.input-20 {
+    width: 20%;
+    /* background-color: cadetblue; */
+}
+
+.input-10 {
+    width: 10%;
+    /* background-color: brown; */
+}
+
+.input-l {
+    text-align: left;
+}
+
+.input-r {
+    text-align: right;
+}
