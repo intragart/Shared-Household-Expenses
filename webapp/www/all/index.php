@@ -26,7 +26,9 @@
         <link type="text/css" rel="stylesheet" href="/style/css/general.css">
         <link type="text/css" rel="stylesheet" href="/style/css/navigation.css">
         <link type="text/css" rel="stylesheet" href="/style/css/table.css">
-        <link type="text/css" rel="stylesheet" href="/style/css/form.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-structure.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-detailed.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <meta charset="UTF-8">
         <meta name="keywords" content="">
         <meta name="description" content="">
@@ -46,7 +48,7 @@
                 <h1>Alle Ausgaben</h1>
                 <hr class="sep">
                 <br />
-                <div class="tableControl">
+                <div class="tableControl detailed-form">
                     <div class="input-60 input-l">
                         <input type="search" id="tableSearch" name="tableSearch" required>
                         <span class="bar"></span>

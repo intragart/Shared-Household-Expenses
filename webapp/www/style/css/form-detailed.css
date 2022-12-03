@@ -44,8 +44,10 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFT
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************/
 
-input,
-select {
+.detailed-form input[type="text"],
+.detailed-form input[type="date"],
+.detailed-form input[type="search"],
+.detailed-form select {
     width: 100%;
     height: 52px;
     box-sizing: border-box;
@@ -61,7 +63,7 @@ select {
     flex: none;
 }
 
-label {
+.detailed-form label {
     color: var(--tmp-color);
     font-size: 12pt;
     font-weight: normal;
@@ -72,21 +74,21 @@ label {
     transition: var(--trans-time) ease all;
 }
 
-input:focus,
-select:focus {
+.detailed-form input:focus,
+.detailed-form select:focus {
     outline: none;
 }
 
-input:focus ~ label,
-input:valid ~ label,
-select:focus ~ label,
-select:valid ~ label {
+.detailed-form input:focus ~ label,
+.detailed-form input:valid ~ label,
+.detailed-form select:focus ~ label,
+.detailed-form select:valid ~ label {
     top: 0px;
     font-size: 10pt;
     color: var(--hl-color);
 }
 
-.bar {
+.detailed-form .bar {
     position: relative;
     display: block;
     width: 0;
@@ -97,8 +99,8 @@ select:valid ~ label {
     left: 0%;
 }
 
-input:focus ~ .bar,
-select:focus ~ .bar {
+.detailed-form input:focus ~ .bar,
+.detailed-form select:focus ~ .bar {
     width: 100%;
 }
 
@@ -106,7 +108,7 @@ select:focus ~ .bar {
 * END OF CITATION
 ****************/
 
-.btn {
+.detailed-form .btn {
     all: unset;
     background: var(--tmp-color);
     color: #ffffff;
@@ -118,34 +120,35 @@ select:focus ~ .bar {
     outline: none;
     cursor: pointer;
     transition: var(--trans-time) ease all;
+    border-bottom: none;
 
 }
 
-.btn-positive {
+.detailed-form .btn-positive {
     background: var(--hl-color);
 }
 
-input.submit:disabled,
-button:disabled {
+.detailed-form input.submit:disabled,
+.detailed-form button:disabled {
     cursor: not-allowed;
     background: var(--tmp-color-2);
 }
 
-.btn:hover,
-.btn:focus,
-.btn:focus-visible {
+.detailed-form .btn:hover,
+.detailed-form .btn:focus,
+.detailed-form .btn:focus-visible {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.74);
 }
 
-input.invalid ~ label,
-select.invalid ~ label {
+.detailed-form input.invalid ~ label,
+.detailed-form select.invalid ~ label {
     top: 0px;
     font-size: 10pt;
     color: var(--neg-color);
 }
 
-input.invalid ~ .bar,
-select.invalid ~ .bar {
+.detailed-form input.invalid ~ .bar,
+.detailed-form select.invalid ~ .bar {
     width: 100%;
     background: var(--neg-color);
 }
