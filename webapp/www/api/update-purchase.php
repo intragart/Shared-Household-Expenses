@@ -163,11 +163,14 @@
                 // Only rows that have inputUser and inputAmount set are being processed
                 if ($_POST["inputUser".$i] != "" and $_POST["inputAmount".$i] != "") {
 
+                    // replace comma with point
+                    $clean_inputAmount = str_replace(",", ".", $_POST["inputAmount".$i]);
+
                     // check if this is a completely new contribution or an update for an existing contribution
                     if ($_POST["contributionId".$i] == "new") {
                         // completely new contribution
                         $sql = $db->prepare("INSERT INTO contribution(purchase_id, contribution_id, user_id, amount, comment) VALUES (?, ?, ?, ?, ?)");
-                        $sql->bind_param('iiids', $_POST['purchaseId'], $next_contribution_id, $_POST["inputUser".$i], $_POST["inputAmount".$i], $_POST["inputRemark".$i]);
+                        $sql->bind_param('iiids', $_POST['purchaseId'], $next_contribution_id, $_POST["inputUser".$i], $clean_inputAmount, $_POST["inputRemark".$i]);
                         $sql->execute();
                         $sql->free_result();
                         $next_contribution_id++;
@@ -177,7 +180,7 @@
                         if (!in_array($_POST["contributionId".$i], $deleteContributions)) {
                             // contribution id is not marked to be deleted, update can be applied
                             $sql = $db->prepare("UPDATE contribution SET user_id = ?, amount = ?, comment = ? WHERE purchase_id = ? AND contribution_id = ?");
-                            $sql->bind_param('idsii', $_POST["inputUser".$i], $_POST["inputAmount".$i], $_POST["inputRemark".$i], $_POST['purchaseId'], $_POST["contributionId".$i]);
+                            $sql->bind_param('idsii', $_POST["inputUser".$i], $clean_inputAmount, $_POST["inputRemark".$i], $_POST['purchaseId'], $_POST["contributionId".$i]);
                             $sql->execute();
                             $sql->free_result();
                         }

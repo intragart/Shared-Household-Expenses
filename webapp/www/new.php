@@ -149,7 +149,7 @@
                             <label for="inputUser0">Name</label>
                         </div>
                         <div class="input-20 input-l">
-                            <input type="text" id="inputAmount0" name="inputAmount0" pattern="^[-]{0,1}[0-9]+[,]{0,1}[0-9]{0,2}$" required>
+                            <input type="text" id="inputAmount0" name="inputAmount0" pattern="^[-]{0,1}[0-9]+[,\.]{0,1}[0-9]{0,2}$" required>
                             <span class="bar"></span>
                             <label for="inputAmount0">Betrag (EUR)</label>
                         </div>

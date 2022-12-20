@@ -61,7 +61,7 @@
             if (!preg_match("/^[0-9]+$/", $_POST["inputUser".$i])) {
                 $all_regex_ok = false;
             }
-            if (!preg_match("/^[-]{0,1}[0-9]+[,]{0,1}[0-9]{0,2}$/", $_POST["inputAmount".$i])) {
+            if (!preg_match("/^[-]{0,1}[0-9]+[,\.]{0,1}[0-9]{0,2}$/", $_POST["inputAmount".$i])) {
                 $all_regex_ok = false;
             }
             if (!preg_match("/^[\w äöüÄÖÜß&,\._-]*$/", $_POST["inputRemark".$i])) {
@@ -127,8 +127,11 @@
             // Only rows that have inputUser and inputAmount set are being processed
             if ($_POST["inputUser".$i] != "" and $_POST["inputAmount".$i] != "") {
 
+                // replace comma with point
+                $clean_inputAmount = str_replace(",", ".", $_POST["inputAmount".$i]);
+
                 $sql = $db->prepare("INSERT INTO contribution(purchase_id, contribution_id, user_id, amount, comment) VALUES (?, ?, ?, ?, ?)");
-                $sql->bind_param('iiids', $next_purchase_id, $next_contribution_id, $_POST["inputUser".$i], $_POST["inputAmount".$i], $_POST["inputRemark".$i]);
+                $sql->bind_param('iiids', $next_purchase_id, $next_contribution_id, $_POST["inputUser".$i], $clean_inputAmount, $_POST["inputRemark".$i]);
                 $sql->execute();
                 $sql->free_result();
                 $next_contribution_id++;
