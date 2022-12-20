@@ -93,4 +93,4 @@
         }
     ?>
 </table>
-<div class="edit-details" onclick="editPurchaseDetails(<?php echo $purchase_id; ?>)"><i class="material-icons">edit</i></div>
+<div class="edit-details margin-top-15" onclick="editPurchase(<?php echo $purchase_id; ?>)"><i class="material-icons">edit</i></div>

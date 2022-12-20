@@ -18,6 +18,8 @@
 const plusButton = document.getElementById("new-row");
 plusButton.addEventListener("click", addRow);
 
+// This event listener is set on the last comment field in the form and
+// triggers the creation of a new row when updated by the user
 let triggerNewRow = document.getElementById("inputRemark0");
 triggerNewRow.addEventListener("blur", checkCurrentRow)
 

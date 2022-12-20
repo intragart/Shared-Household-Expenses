@@ -57,11 +57,6 @@ td.maintable {
     border-left: 1px solid black;
     position: relative;
 }
-
-.edit-details {
-  margin-top: 15px;
-  cursor: pointer;
-}
   
 table.simpletable,
 tr.simpletable,
@@ -71,9 +66,16 @@ td.simpletable {
   border: 1px solid black;
 }
 
+table.simpletable {
+    width: 100%;
+}
 
 th.simpletable,
 td.simpletable {
   padding: 3px 5px;
   text-align: left;
+}
+
+.borderless {
+    border: none !important;
 }

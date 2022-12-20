@@ -19,3 +19,8 @@ GRANT INSERT ON shared_household_expenses.purchase TO 'she_editor'@'localhost';
 GRANT INSERT ON shared_household_expenses.retailer TO 'she_editor'@'localhost';
 GRANT SELECT ON shared_household_expenses.retailer TO 'she_editor'@'localhost';
 GRANT SELECT ON shared_household_expenses.dashboard TO 'she_editor'@'localhost';
+GRANT SELECT ON shared_household_expenses.purchase TO 'she_editor'@'localhost';
+GRANT SELECT ON shared_household_expenses.contribution TO 'she_editor'@'localhost';
+GRANT SELECT ON shared_household_expenses.user TO 'she_editor'@'localhost';
+GRANT SELECT ON shared_household_expenses.article_list TO 'she_editor'@'localhost';
+GRANT SELECT ON shared_household_expenses.user_contribution TO 'she_editor'@'localhost';

@@ -42,6 +42,9 @@
         <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
         <script src="/script/tableDetails.js" type="text/javascript" defer></script>
         <script src="/script/spanFullscreen.js" type="text/javascript" defer></script>
+        <script src="/script/checkForm.js" type="text/javascript" defer></script>
+        <script src="/script/submitForm.js" type="text/javascript" defer></script>
+        <script src="/script/addRemoveRowInEditPurchase.js" type="text/javascript" defer></script>
     </head>
     <body>
         <div class="left-wrapper">

@@ -14,10 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-function editPurchaseDetails(index) {
+function editPurchase(index) {
+    // Stop any previous running EventListeners on edit Purchase
+    stopCheckForm('editPurchase');
+
     // gets the details-content element where the result will be shown and hide the Details
-    let detailRowContent = document.getElementById("details-content-"+index);
-    detailRowContent.innerHTML = "";
+    let targetSpan = document.getElementById("message-content");
+    targetSpan.innerHTML = "";
     //showHideTableDetails(index);
 
     // Get the HTML and Database data to edit the current purchase
@@ -29,16 +32,19 @@ function editPurchaseDetails(index) {
     request.onload = function() {
         if (request.status == 200) {
             // Successful request. Add body to innerHTML or current details
-            document.getElementById("details-content-"+index).innerHTML = request.response;
+            targetSpan.innerHTML = request.response;
+
+            // Add checkForm
+            startCheckForm('editPurchase');
         } else {
             // Request hasn't benn successful, inform user
-            detailRowContent.innerHTML = "Received: "+request.status+": "+request.statusText;
+            targetSpan.innerHTML = "Received: "+request.status+": "+request.statusText;
         }
     };
 
     // Request failed
     request.onerror = function() {
-        detailRowContent.innerHTML = "Request failed.";
+        targetSpan.innerHTML = "Request failed.";
     };
 
 }
@@ -65,8 +71,4 @@ function showPurchaseDetails(index) {
     request.onerror = function() {
         document.getElementById("details-content-"+index).innerHTML = "Request failed.";
     };
-
-    // Make Details visible
-    detailRow.className = detailRow.className.replace(" hidden", "");
-    
 }
