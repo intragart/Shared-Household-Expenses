@@ -24,3 +24,7 @@ GRANT SELECT ON shared_household_expenses.contribution TO 'she_editor'@'localhos
 GRANT SELECT ON shared_household_expenses.user TO 'she_editor'@'localhost';
 GRANT SELECT ON shared_household_expenses.article_list TO 'she_editor'@'localhost';
 GRANT SELECT ON shared_household_expenses.user_contribution TO 'she_editor'@'localhost';
+GRANT UPDATE ON shared_household_expenses.purchase TO 'she_editor'@'localhost';
+GRANT UPDATE ON shared_household_expenses.contribution TO 'she_editor'@'localhost';
+GRANT DELETE ON shared_household_expenses.purchase TO 'she_editor'@'localhost';
+GRANT DELETE ON shared_household_expenses.contribution TO 'she_editor'@'localhost';

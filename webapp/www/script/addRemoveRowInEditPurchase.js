@@ -65,36 +65,65 @@ function addEditPurchase() {
 function toggleDeletionOrDeleteContribution(rowIndex) {
     // get the row where the button has been clicked
     let currentRow = document.getElementById("row" + String(rowIndex));
+
+    // get the contribution id for the current row
+    let contribID = currentRow.querySelector("input[id=contributionId" + String(rowIndex)).value;
+
+    // get the button which toggles between remove and keep
+    let toggleButton = currentRow.querySelector('i.material-icons');
+
+    // get the string that contains all contributions that shall be removed
+    // when form is being saved
+    let removeContribs = document.getElementById("deleteContributions");
     
     // get the current mode of the button to determine what to do next
-    let currentMode = currentRow.querySelector('i.material-icons').innerHTML;
+    let currentMode = toggleButton.innerHTML;
 
     if (currentMode == "remove") {
         // delete the current line completely if it's a new line or mark it to be deleted
         // when line comes from the database
-        if (document.getElementById("contribution_id"+String(rowIndex)).value == "new") {
+        if (document.getElementById("contributionId"+String(rowIndex)).value == "new") {
             // new line, delete
             currentRow.remove();
         } else {
-            // line from database, mark for deletion
+            // line from database, mark ui for deletion
             let domElements = currentRow.querySelectorAll('input[type=text], select, td');
-
             for (let i = 0; i < domElements.length; i++) {
                 domElements[i].classList.add("strikethrough");
                 domElements[i].setAttribute('disabled', "");
             }
+            toggleButton.innerHTML = "undo";
 
-            currentRow.querySelector('i.material-icons').innerHTML = "undo";
+            // add contribution id to deleteContributions input in form
+            if (removeContribs.value == "") {
+                // no other IDs are present, simply insert
+                removeContribs.value = contribID;
+            } else {
+                removeContribs.value = removeContribs.value + "," + contribID;
+            }
         }
     } else if (currentMode == "undo") {
-        // line from database, delete mark for deletion
+        // line from database, delete mark for deletion in gui
         let domElements = currentRow.querySelectorAll('input[type=text], select, td');
-
         for (let i = 0; i < domElements.length; i++) {
             domElements[i].classList.remove("strikethrough");
             domElements[i].removeAttribute('disabled');
         }
+        toggleButton.innerHTML = "remove";
 
-        currentRow.querySelector('i.material-icons').innerHTML = "remove";
+        // remove contribution id from deleteContributions input in form
+        let alreadyMarkedIds = removeContribs.value.split(",");
+        removeContribs.value = "";
+        for (let i = 0; i < alreadyMarkedIds.length; i++) {
+            if (alreadyMarkedIds[i] != contribID) {
+                // add contribution id to deleteContributions input in form
+                if (removeContribs.value == "") {
+                    // no other IDs are present, simply insert
+                    removeContribs.value = alreadyMarkedIds[i];
+                } else {
+                    removeContribs.value = removeContribs.value + "," + alreadyMarkedIds[i];
+                }
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@
 
 function editPurchase(index) {
     // Stop any previous running EventListeners on edit Purchase
-    stopCheckForm('editPurchase');
+    stopCheckForm('editPurchaseForm');
 
     // gets the details-content element where the result will be shown and hide the Details
     let targetSpan = document.getElementById("message-content");
@@ -35,7 +35,7 @@ function editPurchase(index) {
             targetSpan.innerHTML = request.response;
 
             // Add checkForm
-            startCheckForm('editPurchase');
+            startCheckForm('editPurchaseForm');
         } else {
             // Request hasn't benn successful, inform user
             targetSpan.innerHTML = "Received: "+request.status+": "+request.statusText;

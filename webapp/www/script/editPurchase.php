@@ -86,10 +86,12 @@
     }
 
 ?>
-<form class="simple-form" id="editPurchase" action="/api/update-purchase.php" method="post">
+<form class="simple-form" id="editPurchaseForm" action="/api/update-purchase.php" method="post">
     <div class="form-row">
         <h1>Bearbeiten, Einkauf-ID: <?php echo $purchase_id; ?></h1>
         <h2>Allgemein</h2>
+        <input type="hidden" id="purchaseId" name="purchaseId" value="<?php echo $purchase_id; ?>">
+        <input type="hidden" id="deleteContributions" name="deleteContributions" value="">
     </div>
     <div class="form-row">
         <div class="input-20">Erstellung:</div>
@@ -104,12 +106,12 @@
                 }
             ?>
         </datalist>
-        <div class="input-20"><label for="inputArticle-<?php echo $purchase_id; ?>">Artikel:</label></div>
-        <div class="input-80"><input type="text" list="article-list" id="inputArticle-<?php echo $purchase_id; ?>" name="inputArticle-<?php echo $purchase_id; ?>" pattern="^[\w äöüÄÖÜß&,\._-]+$" value="<?php echo $purchase_article; ?>" required></div>
+        <div class="input-20"><label for="inputArticle">Artikel:</label></div>
+        <div class="input-80"><input type="text" list="article-list" id="inputArticle" name="inputArticle" pattern="^[\w äöüÄÖÜß&,\._-]+$" value="<?php echo $purchase_article; ?>" required></div>
     </div>
     <div class="form-row">
-        <div class="input-20"><label for="inputDate-<?php echo $purchase_id; ?>">Datum:</label></div>
-        <div class="input-80"><input type="date" id="inputDate-<?php echo $purchase_id; ?>" name="inputDate-<?php echo $purchase_id; ?>" pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$" value="<?php echo $purchase_date; ?>" required></div>
+        <div class="input-20"><label for="inputDate">Datum:</label></div>
+        <div class="input-80"><input type="date" id="inputDate" name="inputDate" pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$" value="<?php echo $purchase_date; ?>" required></div>
     </div>
     <div class="form-row">
         <datalist id="retailer-list">
@@ -120,12 +122,11 @@
                 }
             ?>
         </datalist>
-        <div class="input-20"><label for="inputDealer-<?php echo $purchase_id; ?>">Händler:</label></div>
-        <div class="input-80"><input type="text" list="retailer-list" id="inputDealer-<?php echo $purchase_id; ?>" name="inputDealer-<?php echo $purchase_id; ?>" pattern="^[\w äöüÄÖÜß&,\._-]+$" value="<?php echo $retailer; ?>" required></div>
+        <div class="input-20"><label for="inputDealer">Händler:</label></div>
+        <div class="input-80"><input type="text" list="retailer-list" id="inputDealer" name="inputDealer" pattern="^[\w äöüÄÖÜß&,\._-]+$" value="<?php echo $retailer; ?>" required></div>
     </div>
     <div class="form-row">
         <h2>Kostenverteilung</h2>
-        <input type="hidden" id="deleteContributions" name="deleteContributions" value="">
     </div>
     <div class="form-row">
         <table class="simpletable borderless">
@@ -141,7 +142,7 @@
                     // Building the base HTML for each contribution data row
                     $contrib_html =  "<!-- <tr class=\"simpletable\" id=\"row__\">\n";
                     $contrib_html = $contrib_html."<td class=\"simpletable borderless\">_timestamp_</td>\n";
-                    $contrib_html = $contrib_html."<input type=\"hidden\" id=\"contribution_id__\" name=\"contribution_id__\" value=\"_contribution_id_\">\n";
+                    $contrib_html = $contrib_html."<input type=\"hidden\" id=\"contributionId__\" name=\"contributionId__\" value=\"_contribution_id_\">\n";
                     $contrib_html = $contrib_html."<td class=\"simpletable borderless\">\n";
                     $contrib_html = $contrib_html."<select id=\"inputUser__\" name=\"inputUser__\" required>\n";
                     $contrib_html = $contrib_html."<option selected value></option>\n";
@@ -204,6 +205,7 @@
                         $cch = str_replace(" -->", "", $cch);
                         $cch = str_replace("__", $z, $cch);
                         $cch = str_replace("_timestamp_", "new", $cch);
+                        $cch = str_replace("_contribution_id_", "new", $cch);
                         $cch = str_replace("_amount_", "", $cch);
                         $cch = str_replace("_comment_", "", $cch);
 
@@ -219,7 +221,7 @@
         <div class="edit-details" onclick="addEditPurchase()"><i class="material-icons">add</i></div>
     </div>
     <div class="form-row">
-        <div class="edit-details margin-top-15" onclick="submitForm(editPurchase)"><i id="submitBtn" class="material-icons">save</i></div>
+        <div class="edit-details margin-top-15" onclick="submitForm(editPurchaseForm)"><i id="submitBtn" class="material-icons">save</i></div>
         <div class="edit-details margin-top-15 neg-icon" onclick="editPurchase(<?php echo $purchase_id; ?>)"><i class="material-icons">delete</i></div>
     </div>
 </form>
