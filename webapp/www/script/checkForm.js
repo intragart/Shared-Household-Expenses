@@ -15,9 +15,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // listen for changes inside the form
-const formOnPage = document.querySelector("form");
-formOnPage.addEventListener("keyup", checkForm);
-formOnPage.addEventListener("click", checkForm);
+function startCheckForm(formID) {
+    const formOnPage = document.getElementById(formID);
+    if (formOnPage != null) {
+        stopCheckForm(formID);
+        formOnPage.addEventListener("keyup", checkForm);
+        formOnPage.addEventListener("click", checkForm);
+        checkForm();
+    }
+}
+
+function stopCheckForm(formID) {
+    const formOnPage = document.getElementById(formID);
+    if (formOnPage != null) {
+        formOnPage.removeEventListener("keyup", checkForm);
+        formOnPage.removeEventListener("click", checkForm);
+    }
+}
 
 function checkForm() {
     // Checks the form using multiple functions. If all functions return true
@@ -30,8 +44,13 @@ function checkForm() {
     let submitBtn = document.getElementById("submitBtn");
     if (checkP && checkD) {
         submitBtn.removeAttribute("disabled");
+        submitBtn.className = submitBtn.className.replace(" invalid", "");
+        
     } else {
         submitBtn.setAttribute("disabled", "");
+        if (!submitBtn.className.includes("invalid")) {
+            submitBtn.className = submitBtn.className + " invalid";
+        }
     }
 }
 

@@ -63,7 +63,7 @@
         <script src="/script/resetToAutofocus.js" type="text/javascript" defer></script>
         <script src="/script/submitForm.js" type="text/javascript" defer></script>
     </head>
-    <body>
+    <body onload="startCheckForm('newForm')">
         <div class="left-wrapper">
             <?php include '../../src/navigation.php'; ?>
         </div>
