@@ -42,8 +42,8 @@ function submitForm(formObject) {
     // Response received
     request.onload = function() {
         if (request.status == 200) {
-            // Successful request. Redirect to Dashboard
-            location.href = "/dashboard";
+            // Successful request. Reload the page
+            window.location.reload(true);
         } else {
             // Request hasn't benn successful, inform user
             alert(request.status+": "+request.statusText+"\n"+request.response);
