@@ -30,7 +30,7 @@
     </head>
     <body>
         <div class="left-wrapper">
-            <?php include '../../src/navigation.php'; ?>
+            <?php include '../src/navigation.php'; ?>
         </div>
         <div class="right-wrapper">
             <div id="content">

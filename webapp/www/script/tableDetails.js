@@ -25,7 +25,7 @@ function editPurchase(index) {
 
     // Get the HTML and Database data to edit the current purchase
     let request = new XMLHttpRequest();
-    request.open('GET', '/script/editPurchase.php?purchase_id='+index);
+    request.open('GET', '/api/edit-purchase.php?purchase_id='+index);
     request.send();
 
     // Response received
@@ -52,7 +52,7 @@ function editPurchase(index) {
 function showPurchaseDetails(index) {
     // Request Details
     let request = new XMLHttpRequest();
-    request.open('GET', '/script/getPurchaseDetails.php?purchase_id='+index);
+    request.open('GET', '/api/get-purchase-details.php?purchase_id='+index);
     request.send();
 
     // Response received

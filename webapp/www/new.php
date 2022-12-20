@@ -17,7 +17,7 @@
 -->
 <?php
     // Get the informations to connect to database
-    require("../../src/get_db_login.php");
+    require("../src/get_db_login.php");
     $db_settings = get_db_login("viewer");
 
     try {
@@ -65,13 +65,13 @@
     </head>
     <body onload="startCheckForm('newForm')">
         <div class="left-wrapper">
-            <?php include '../../src/navigation.php'; ?>
+            <?php include '../src/navigation.php'; ?>
         </div>
         <div class="right-wrapper">
             <div id="content">
                 <h1 id="test123">Neuen Eintrag erfassen</h1> <!-- TODO: ID entfernen -->
                 <hr class="sep">
-                <form action="/new/insert.php" id="newForm" method="post" autocomplete="on" class="detailed-form" novalidate>
+                <form action="/api/insert-purchase.php" id="newForm" method="post" autocomplete="on" class="detailed-form" novalidate>
                     <div class="form-row">
                         <h2>Allgemein</h2>
                     </div>

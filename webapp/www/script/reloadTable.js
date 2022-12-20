@@ -19,7 +19,7 @@ function reloadTable(tableHolder) {
     // Build the url
     let fromdate = document.getElementById("inputDateFrom").value;
     let todate = document.getElementById("inputDateTo").value;
-    let url="/script/getTable.php?fromdate="+fromdate+"&todate="+todate;
+    let url="/api/get-table.php?fromdate="+fromdate+"&todate="+todate;
 
     // Build a new HTTPRequestElement and send the get request
     let request = new XMLHttpRequest();

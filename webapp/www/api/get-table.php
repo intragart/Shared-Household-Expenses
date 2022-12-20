@@ -55,7 +55,12 @@
     $select_statement = "SELECT * FROM dashboard".$select_statement;
 
     // Get the informations to connect to database as editor
-    require_once("../../src/get_db_login.php");
+    if (! @include_once("../src/get_db_login.php")) {
+        require_once("../../src/get_db_login.php");
+    } else {
+        require_once("../src/get_db_login.php");
+    }
+    
     $db_settings = get_db_login("viewer");
 
     // connect to database and start a transaction

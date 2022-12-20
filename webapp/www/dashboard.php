@@ -17,7 +17,7 @@
 -->
 <?php
     // Get the informations to connect to database
-    require("../../src/get_db_login.php");
+    require("../src/get_db_login.php");
     $db_settings = get_db_login("viewer");
 
     $php_fromdate = date("Y-m-d", strtotime("-30 day", time()));
@@ -48,7 +48,7 @@
     </head>
     <body>
         <div class="left-wrapper">
-            <?php include '../../src/navigation.php'; ?>
+            <?php include '../src/navigation.php'; ?>
         </div>
         <div class="right-wrapper">
             <div id="content">
@@ -111,7 +111,7 @@
                 <h2>Ausgaben der letzten 30 Tage</h2>
                     <?php
                         // get table html
-                        require("../script/getTable.php");
+                        require("api/get-table.php");
                     ?>
                 <br />
             </div>

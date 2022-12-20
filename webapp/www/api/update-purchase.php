@@ -148,6 +148,9 @@
         $sql->bind_result($next_contribution_id);
         $sql->fetch();
         $sql->free_result();
+        if (!$next_contribution_id) {
+            $next_contribution_id = 1;
+        }
 
         // update or add the contributions (dynamic rows) which have not been marked to be deleted
         $i = 0;
@@ -192,7 +195,7 @@
 
     } catch (Exception $ex) {
         $db->rollback();
-        echo "Error during SQL Execution.";
+        echo "Error during SQL Execution.\n".$ex;
         http_response_code(400);
     }
     

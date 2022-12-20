@@ -46,7 +46,7 @@
     </head>
     <body>
         <div class="left-wrapper">
-            <?php include '../../src/navigation.php'; ?>
+            <?php include '../src/navigation.php'; ?>
         </div>
         <div class="right-wrapper">
             <div id="content">
@@ -73,7 +73,7 @@
                 <div id="tableHolder">
                     <?php
                         // get table html
-                        require("../script/getTable.php");
+                        require("api/get-table.php");
                     ?>
                 </div>
                 <br />
