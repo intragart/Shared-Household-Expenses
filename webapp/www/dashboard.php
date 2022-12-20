@@ -94,7 +94,7 @@
                                 echo number_format($difference, 2)." €\n";
                                 echo "</div>\n";
                                 echo "<div class=\"saldo-name\">\n";
-                                echo $row['username']."\n";
+                                echo $row['display_name']."\n";
                                 echo "</div>\n";
                                 echo "</div>\n";
                             }
