@@ -25,7 +25,7 @@ function submitForm(formObject) {
     let inputObjects = formObject.querySelectorAll('input[type=text], input[type=date], input[type=hidden], select');
 
     // build the post parameters
-    var params = "";
+    let params = "";
     for (let i = 0; i < inputObjects.length; i++) {
         if (params != "") {
             params = params + "&";
@@ -54,4 +54,42 @@ function submitForm(formObject) {
     request.onerror = function() {
         alert("Request failed.");
     };
+}
+
+function deleteData(formObject, identifier) {
+    // Sends a post request to an url which is responsible to delete data by using the identifier
+
+    // Ask the user before deleting
+    let answer = confirm("Sollen dieser Einkauf und dessen Beteiligungen wirklich gelöscht werden?");
+
+    if (answer) {
+        // get the target url
+        let url = formObject.getAttribute("delete-action");
+
+        // Build the parameter
+        let params = "identifier=" + String(identifier);
+
+        // Build a new HTTPRequestElement and send the post request
+        let request = new XMLHttpRequest();
+        request.open('POST', url, true);
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(params);
+
+        // Response received
+        request.onload = function() {
+            if (request.status == 200) {
+                // Successful request. Alert the user and reload the page
+                alert("Löschen erfolgreich.");
+                window.location.reload(true);
+            } else {
+                // Request hasn't benn successful, inform user
+                alert(request.status+": "+request.statusText+"\n"+request.response);
+            }
+        };
+
+        // Request failed
+        request.onerror = function() {
+            alert("Request failed.");
+        };
+    }
 }

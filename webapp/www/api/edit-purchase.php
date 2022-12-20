@@ -88,7 +88,7 @@
     }
 
 ?>
-<form class="simple-form" id="editPurchaseForm" action="/api/update-purchase.php" method="post">
+<form class="simple-form" id="editPurchaseForm" action="/api/update-purchase.php" delete-action="/api/delete-purchase.php" method="post">
     <div class="form-row">
         <h1>Bearbeiten, Einkauf-ID: <?php echo $purchase_id; ?></h1>
         <h2>Allgemein</h2>
@@ -228,6 +228,6 @@
     </div>
     <div class="form-row">
         <div class="edit-details margin-top-15" onclick="submitForm(editPurchaseForm)"><i id="submitBtn" class="material-icons">save</i></div>
-        <div class="edit-details margin-top-15 neg-icon" onclick="editPurchase(<?php echo $purchase_id; ?>)"><i class="material-icons">delete</i></div>
+        <div class="edit-details margin-top-15 neg-icon" onclick="deleteData(editPurchaseForm, <?php echo $purchase_id; ?>)"><i class="material-icons">delete</i></div>
     </div>
 </form>
