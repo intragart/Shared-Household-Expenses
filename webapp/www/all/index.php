@@ -28,6 +28,7 @@
         <link type="text/css" rel="stylesheet" href="/style/css/table.css">
         <link type="text/css" rel="stylesheet" href="/style/css/form-structure.css">
         <link type="text/css" rel="stylesheet" href="/style/css/form-detailed.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-simple.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <meta charset="UTF-8">
         <meta name="keywords" content="">
@@ -39,6 +40,9 @@
         <script src="/script/reloadTable.js" type="text/javascript" defer></script>
         <script src="/script/searchTable.js" type="text/javascript" defer></script>
         <script src="/script/spanFullscreen.js" type="text/javascript" defer></script>
+        <script src="/script/checkForm.js" type="text/javascript" defer></script>
+        <script src="/script/submitForm.js" type="text/javascript" defer></script>
+        <script src="/script/addRemoveRowInEditPurchase.js" type="text/javascript" defer></script>
     </head>
     <body>
         <div class="left-wrapper">
