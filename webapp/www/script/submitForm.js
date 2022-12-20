@@ -22,7 +22,7 @@ function submitForm(formObject) {
     let url = formObject.getAttribute("action");
 
     // get all input objects
-    let inputObjects = formObject.querySelectorAll('input[type=text], input[type=date], select');
+    let inputObjects = formObject.querySelectorAll('input[type=text], input[type=date], input[type=hidden], select');
 
     // build the post parameters
     var params = "";

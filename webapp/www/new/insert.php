@@ -38,7 +38,7 @@
     require("../../src/get_db_login.php");
 
     // Get the number of dynamic rows
-    $dynamicRows = (count($_POST) - 3) / 3;
+    $dynamicRows = (count($_POST) - 4) / 3;
 
     // check if the maindata fields match their regpatterns
     $all_regex_ok = true;
