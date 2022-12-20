@@ -28,7 +28,8 @@
         $sql = "SELECT * FROM purchase WHERE purchase_id = ".$purchase_id." LIMIT 1";
         $res = $db->query($db->real_escape_string($sql));
         while ($row = $res->fetch_assoc()) {
-            $purchase_timestamp = $row['timestamp'];
+            $purchase_timestamp_created = $row['timestamp_created'];
+            $purchase_timestamp_updated = $row['timestamp_updated'];
             $purchase_article = $row['article'];
             $purchase_date = $row['date'];
             $retailer_id = $row['retailer_id'];
@@ -47,7 +48,8 @@
         $res = $db->query($db->real_escape_string($sql));
         while ($row = $res->fetch_assoc()) {
             $contribution[$i] = array(
-                'timestamp' => $row['timestamp'],
+                'timestamp_created' => $row['timestamp_created'],
+                'timestamp_updated' => $row['timestamp_updated'],
                 'username' => $row['username'],
                 'amount' => $row['amount'],
                 'comment' => $row['comment']
@@ -69,7 +71,8 @@
 <h1>Details zu Einkauf-ID: <?php echo $purchase_id; ?></h1>
 <h2>Allgemein</h2>
 <p>
-    Erfasst: <?php echo $purchase_timestamp; ?><br />
+    Erfasst: <?php echo $purchase_timestamp_created; ?><br />
+    Aktualisiert: <?php echo $purchase_timestamp_updated; ?><br />
     Artikel: <?php echo $purchase_article; ?><br />
     Datum: <?php echo $purchase_date; ?><br />
     Händler: <?php echo $retailer; ?>
@@ -78,6 +81,7 @@
 <table class="simpletable">
     <tr class="simpletable">
         <th class="simpletable">Erstellung</th>
+        <th class="simpletable">Aktualisiert</th>
         <th class="simpletable">Name</th>
         <th class="simpletable">Betrag</th>
         <th class="simpletable">Bemerkung</th>
@@ -85,7 +89,8 @@
     <?php
         foreach ($contribution as $contri) {
             echo "<tr class=\"simpletable\">\n";
-            echo "<td class=\"simpletable\">".$contri["timestamp"]."</td>\n";
+            echo "<td class=\"simpletable\">".$contri["timestamp_created"]."</td>\n";
+            echo "<td class=\"simpletable\">".$contri["timestamp_updated"]."</td>\n";
             echo "<td class=\"simpletable\">".$contri["username"]."</td>\n";
             echo "<td class=\"simpletable\">".$contri["amount"]." €</td>\n";
             echo "<td class=\"simpletable\">".$contri["comment"]."</td>\n";

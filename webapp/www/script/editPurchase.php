@@ -29,7 +29,8 @@
         $sql = "SELECT * FROM purchase WHERE purchase_id = ".$purchase_id." LIMIT 1";
         $res = $db->query($db->real_escape_string($sql));
         while ($row = $res->fetch_assoc()) {
-            $purchase_timestamp = $row['timestamp'];
+            $purchase_timestamp_created = $row['timestamp_created'];
+            $purchase_timestamp_updated = $row['timestamp_updated'];
             $purchase_article = $row['article'];
             $purchase_date = $row['date'];
             $retailer_id = $row['retailer_id'];
@@ -49,7 +50,8 @@
         while ($row = $res->fetch_assoc()) {
             $contribution[$i] = array(
                 'contribution_id' => $row['contribution_id'],
-                'timestamp' => $row['timestamp'],
+                'timestamp_created' => $row['timestamp_created'],
+                'timestamp_updated' => $row['timestamp_updated'],
                 'user_id' => $row['user_id'],
                 'amount' => $row['amount'],
                 'comment' => $row['comment']
@@ -95,7 +97,11 @@
     </div>
     <div class="form-row">
         <div class="input-20">Erstellung:</div>
-        <div class="input-80"><?php echo $purchase_timestamp; ?></div>
+        <div class="input-80"><?php echo $purchase_timestamp_created; ?></div>
+    </div>
+    <div class="form-row">
+        <div class="input-20">Aktualisiert:</div>
+        <div class="input-80"><?php echo $purchase_timestamp_updated; ?></div>
     </div>
     <div class="form-row">
         <datalist id="article-list">
@@ -183,7 +189,7 @@
                         $cch = str_replace("<!-- ", "", $cch);
                         $cch = str_replace(" -->", "", $cch);
                         $cch = str_replace("__", $z, $cch);
-                        $cch = str_replace("_timestamp_", $contri["timestamp"], $cch);
+                        $cch = str_replace("_timestamp_", $contri["timestamp_created"], $cch);
                         $cch = str_replace("_contribution_id_", $contri["contribution_id"], $cch);
                         $cch = str_replace("_amount_", $contri["amount"], $cch);
                         $cch = str_replace("_comment_", $contri["comment"], $cch);
