@@ -71,7 +71,7 @@
             <div id="content">
                 <h1 id="test123">Neuen Eintrag erfassen</h1> <!-- TODO: ID entfernen -->
                 <hr class="sep">
-                <form action="/api/insert-purchase.php" id="newForm" method="post" autocomplete="on" class="detailed-form" novalidate>
+                <form action="/api/insert-purchase.php" target="/dashboard" id="newForm" method="post" autocomplete="on" class="detailed-form" novalidate>
                     <div class="form-row">
                         <h2>Allgemein</h2>
                     </div>

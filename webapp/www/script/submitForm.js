@@ -42,8 +42,14 @@ function submitForm(formObject) {
     // Response received
     request.onload = function() {
         if (request.status == 200) {
-            // Successful request. Reload the page
-            window.location.reload(true);
+            // Successful request
+            // forward to site if specified in form tag or reload the current page
+            if (formObject.hasAttribute("target")) {
+                location.href = formObject.getAttribute("target");
+            } else {
+                window.location.reload(true);
+            }
+            
         } else {
             // Request hasn't benn successful, inform user
             alert(request.status+": "+request.statusText+"\n"+request.response);
