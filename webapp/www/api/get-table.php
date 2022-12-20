@@ -61,7 +61,7 @@
         require_once("../src/get_db_login.php");
     }
     
-    $db_settings = get_db_login("viewer");
+    $db_settings = get_db_login("admin");
 
     // connect to database and start a transaction
     $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]); 

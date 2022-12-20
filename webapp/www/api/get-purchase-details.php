@@ -18,7 +18,7 @@
 
     // Get the informations to connect to database
     require("../../src/get_db_login.php");
-    $db_settings = get_db_login("editor");
+    $db_settings = get_db_login("admin");
 
     try {
         // Connect to database

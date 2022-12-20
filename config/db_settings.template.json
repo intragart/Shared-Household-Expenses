@@ -11,12 +11,8 @@
             "username" : "she_login",
             "password" : "1234"
         },
-        "viewer" : {
-            "username" : "she_viewer",
-            "password" : "1234"
-        },
-        "editor" : {
-            "username" : "she_editor",
+        "admin" : {
+            "username" : "she_admin",
             "password" : "1234"
         }
     }

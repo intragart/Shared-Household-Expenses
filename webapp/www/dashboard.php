@@ -18,7 +18,7 @@
 <?php
     // Get the informations to connect to database
     require("../src/get_db_login.php");
-    $db_settings = get_db_login("viewer");
+    $db_settings = get_db_login("admin");
 
     $php_fromdate = date("Y-m-d", strtotime("-30 day", time()));
 ?>

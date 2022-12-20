@@ -1,7 +1,7 @@
 <?php
     function get_db_login($db_user) {
         // Read and decode settings.json
-        $settings_file = file_get_contents(__DIR__.'/../../database/settings.json');
+        $settings_file = file_get_contents(__DIR__.'/../../config/db_settings.json');
         $settings = json_decode($settings_file,true);
 
         // Extract information

@@ -17,7 +17,7 @@
 
     function getRetailerID ($retailer_name) {
         // Get the informations to connect to database as viewer
-        $db_settings = get_db_login("viewer");
+        $db_settings = get_db_login("admin");
 
         // Get the retailer_id from inputDealer if existend, defaults to 0
         $retailer_id = 0;
@@ -99,7 +99,7 @@
     $retailer_id = getRetailerID($_POST["inputDealer"]);
 
     // Get the informations to connect to database as editor
-    $db_settings = get_db_login("editor");
+    $db_settings = get_db_login("admin");
 
     // connect to database and start a transaction
     $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]); 
