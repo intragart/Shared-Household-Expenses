@@ -24,7 +24,7 @@ function searchTable() {
     let searchString = document.getElementById("tableSearch").value.toLocaleLowerCase();
 
     // get all visible rows that are not hidden via css and not table head
-    let selectedRows = document.querySelectorAll('tr:not(.hidden, .table-head)');
+    let selectedRows = document.querySelectorAll('tr:not(.hidden, .maintable-head)');
     
     // show all selected Rows if there's no (more) search string. otherwise loop though
     // each table cell of each row and search for the search string in the values. If

@@ -26,7 +26,10 @@
 tr.maintable {
     border: none;
     border-collapse: collapse;
-    /* background-color: red; */
+}
+
+td.maintable {
+    z-index: 11;
 }
 
 th.maintable,
@@ -41,6 +44,7 @@ td.maintable {
     color: white;
     text-transform: uppercase;
     position: sticky;
+    z-index: 12;
     top: 0;
 }
 
