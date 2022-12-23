@@ -36,7 +36,9 @@ form,
 .input-70,
 .input-60,
 .input-50,
+.input-33,
 .input-30,
+.input-25,
 .input-20,
 .input-10 {
     padding: 5px;
@@ -47,43 +49,42 @@ form,
 
 .input-100 {
     width: 100%;
-    /* background-color: goldenrod; */
-    /* TODO: Remove Debug Backgrounds */
 }
 
 .input-80 {
     width: 80%;
-    /* background-color: blue; */
 }
 
 .input-70 {
     width: 70%;
-    /* background-color: blue; */
 }
 
 .input-60 {
     width: 60%;
-    /* background-color: yellowgreen; */
 }
 
 .input-50 {
     width: 50%;
-    /* background-color: green; */
+}
+
+.input-33 {
+    width: 33.3%;
 }
 
 .input-30 {
     width: 30%;
-    /* background-color: burlywood; */
+}
+
+.input-25 {
+    width: 25%;
 }
 
 .input-20 {
     width: 20%;
-    /* background-color: cadetblue; */
 }
 
 .input-10 {
     width: 10%;
-    /* background-color: brown; */
 }
 
 .input-l {
