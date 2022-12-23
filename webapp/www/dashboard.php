@@ -20,6 +20,10 @@
     require("../src/get_db_login.php");
     $db_settings = get_db_login("admin");
 
+    // Get the settings for the used currency
+    require_once("../src/get_currency_settings.php");
+    $currency = get_currency_settings();
+
     $php_fromdate = date("Y-m-d", strtotime("-30 day", time()));
 ?>
 <!DOCTYPE html>
@@ -91,7 +95,13 @@
                                     echo "<div class=\"saldo\">\n";
                                 }
                                 echo "<div class=\"saldo-sum\">\n";
-                                echo number_format($difference, 2)." €\n";
+                                if ($currency["currencyPosition"] == "before") {
+                                    echo $currency["currencySymbol"]." ";
+                                    echo str_replace(".", $currency["currencyDecimal"], number_format($difference, 2))."\n";
+                                } else {
+                                    echo str_replace(".", $currency["currencyDecimal"], number_format($difference, 2));
+                                    echo " ".$currency["currencySymbol"]."\n";
+                                }
                                 echo "</div>\n";
                                 echo "<div class=\"saldo-name\">\n";
                                 echo $row['display_name']."\n";

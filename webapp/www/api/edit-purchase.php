@@ -21,6 +21,10 @@
     require("../../src/get_db_login.php");
     $db_settings = get_db_login("admin");
 
+    // Get the settings for the used currency
+    require_once("../../src/get_currency_settings.php");
+    $currency = get_currency_settings();
+
     try {
         // Connect to database
         $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);                  
@@ -140,7 +144,7 @@
                 <tr class="simpletable">
                     <th class="simpletable borderless">Erstellung</th>
                     <th class="simpletable borderless">Name</th>
-                    <th class="simpletable borderless">Betrag (EUR)</th>
+                    <th class="simpletable borderless">Betrag (<?php echo $currency["currencyCode"]; ?>)</th>
                     <th class="simpletable borderless">Bemerkung</th>
                 </tr>
                 <?php
@@ -191,7 +195,7 @@
                         $cch = str_replace("__", $z, $cch);
                         $cch = str_replace("_timestamp_", $contri["timestamp_created"], $cch);
                         $cch = str_replace("_contribution_id_", $contri["contribution_id"], $cch);
-                        $cch = str_replace("_amount_", $contri["amount"], $cch);
+                        $cch = str_replace("_amount_", str_replace(".", $currency["currencyDecimal"], $contri["amount"]), $cch);
                         $cch = str_replace("_comment_", $contri["comment"], $cch);
                         $cch = str_replace("<option selected value></option>", "", $cch);
                         $cch = str_replace("<option value=\"".$contri["user_id"]."\">", "<option value=\"".$contri["user_id"]."\" selected>", $cch);

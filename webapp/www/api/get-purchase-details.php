@@ -20,6 +20,10 @@
     require("../../src/get_db_login.php");
     $db_settings = get_db_login("admin");
 
+    // Get the settings for the used currency
+    require_once("../../src/get_currency_settings.php");
+    $currency = get_currency_settings();
+
     try {
         // Connect to database
         $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);                  
@@ -92,7 +96,15 @@
             echo "<td class=\"simpletable\">".$contri["timestamp_created"]."</td>\n";
             echo "<td class=\"simpletable\">".$contri["timestamp_updated"]."</td>\n";
             echo "<td class=\"simpletable\">".$contri["username"]."</td>\n";
-            echo "<td class=\"simpletable\">".$contri["amount"]." €</td>\n";
+            echo "<td class=\"simpletable\">";
+            if ($currency["currencyPosition"] == "before") {
+                echo $currency["currencySymbol"]." ";
+                echo str_replace(".", $currency["currencyDecimal"], $contri["amount"]);
+            } else {
+                echo str_replace(".", $currency["currencyDecimal"], $contri["amount"]);
+                echo " ".$currency["currencySymbol"];
+            }
+            echo "</td>\n";
             echo "<td class=\"simpletable\">".$contri["comment"]."</td>\n";
             echo "</tr>\n";
         }

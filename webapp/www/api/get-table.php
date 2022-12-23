@@ -63,6 +63,14 @@
     
     $db_settings = get_db_login("admin");
 
+    // Get the settings for the used currency
+    if (! @include_once("../src/get_currency_settings.php")) {
+        require_once("../../src/get_currency_settings.php");
+    } else {
+        require_once("../src/get_currency_settings.php");
+    }
+    $currency = get_currency_settings();
+
     // connect to database and start a transaction
     $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]); 
 
@@ -91,7 +99,15 @@
             echo "<td class=\"maintable\">".$row['retailer']."</td>";
             echo "<td class=\"maintable\">".$row['date']."</td>";
             echo "<td class=\"maintable\">".$row['contributor']."</td>";
-            echo "<td class=\"maintable\">".$row['amount']." €</td>";
+            echo "<td class=\"maintable\">";
+            if ($currency["currencyPosition"] == "before") {
+                echo $currency["currencySymbol"]." ";
+                echo str_replace(".", $currency["currencyDecimal"], $row['amount']);
+            } else {
+                echo str_replace(".", $currency["currencyDecimal"], $row['amount']);
+                echo " ".$currency["currencySymbol"];
+            }
+            echo "</td>";
             echo "</tr>";
         }
 

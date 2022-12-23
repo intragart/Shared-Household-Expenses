@@ -20,6 +20,10 @@
     require("../src/get_db_login.php");
     $db_settings = get_db_login("admin");
 
+    // Get the settings for the used currency
+    require_once("../src/get_currency_settings.php");
+    $currency = get_currency_settings();
+
     try {
         // Connect to database and select the article list
         $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);     
@@ -151,7 +155,7 @@
                         <div class="input-20 input-l">
                             <input type="text" id="inputAmount0" name="inputAmount0" pattern="^[-]{0,1}[0-9]+[,\.]{0,1}[0-9]{0,2}$" required>
                             <span class="bar"></span>
-                            <label for="inputAmount0">Betrag (EUR)</label>
+                            <label for="inputAmount0">Betrag (<?php echo $currency["currencyCode"]; ?>)</label>
                         </div>
                         <div class="input-30 input-l">
                             <input type="text" id="inputRemark0" name="inputRemark0" pattern="^[\w äöüÄÖÜß&,\._-]*$" required>

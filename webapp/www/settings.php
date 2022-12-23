@@ -15,7 +15,8 @@
     // You should have received a copy of the GNU General Public License
     // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-    require("../src/get_currency_settings.php");
+    // Get the settings for the used currency
+    require_once("../src/get_currency_settings.php");
     $currency = get_currency_settings();
 
 ?>
