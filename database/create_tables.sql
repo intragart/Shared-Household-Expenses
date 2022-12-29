@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 	`pretty_name` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
 	`passwd_hash` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`start_value` DECIMAL(20,2) NOT NULL DEFAULT '0.00',
-	`account_active` SET('READ_WRITE','READ_ONLY','LOCKED','DEACTIVATED') NOT NULL DEFAULT 'READ_WRITE' COLLATE 'utf8mb4_unicode_ci',
+	`account_status` SET('READ_WRITE','READ_ONLY','LOCKED','DEACTIVATED') NOT NULL DEFAULT 'READ_WRITE' COLLATE 'utf8mb4_unicode_ci',
 	PRIMARY KEY (`user_id`) USING BTREE,
 	UNIQUE INDEX `username` (`username`) USING BTREE,
 	UNIQUE INDEX `pretty_name` (`pretty_name`) USING BTREE

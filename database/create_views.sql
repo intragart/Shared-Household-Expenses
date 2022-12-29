@@ -19,7 +19,7 @@ CASE
 WHEN user.pretty_name IS NULL THEN user.username
 ELSE user.pretty_name
 END display_name,
-user.start_value, SUM(contribution.amount) AS sum_contributions, user.start_value + SUM(contribution.amount) AS sum_user, user.account_active
+user.start_value, SUM(contribution.amount) AS sum_contributions, user.start_value + SUM(contribution.amount) AS sum_user, user.account_status
 FROM contribution
 RIGHT JOIN user ON contribution.user_id = user.user_id
 GROUP BY contribution.user_id

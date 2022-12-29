@@ -73,7 +73,7 @@
         $retailer_list = $db->query($sql);
 
         // Select active users
-        $sql = "SELECT user_id, username, pretty_name FROM user_contribution WHERE account_active != 'DEACTIVATED' ORDER BY username ASC";
+        $sql = "SELECT user_id, username, pretty_name FROM user_contribution WHERE account_status != 'DEACTIVATED' ORDER BY username ASC";
         $res = $db->query($sql);
         while ($row = $res->fetch_assoc()) {
             $user_list[$row['user_id']] = array(

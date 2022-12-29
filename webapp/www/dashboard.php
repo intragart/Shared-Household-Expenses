@@ -65,7 +65,7 @@
                         $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);     
                         
                         // get the sum of all user contributions from active users
-                        $sql = "SELECT SUM(sum_contributions) AS sum_all FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
+                        $sql = "SELECT SUM(sum_contributions) AS sum_all FROM shared_household_expenses.user_contribution WHERE account_status != 'DEACTIVATED'";
                         $res = $db->query($sql);
                         $contribution_sum = 0;
                         if ($res->num_rows > 0) {
@@ -73,7 +73,7 @@
                         }
 
                         // get the maximum sum of all active users
-                        $sql = "SELECT MAX(sum_user) AS max_user_sum FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
+                        $sql = "SELECT MAX(sum_user) AS max_user_sum FROM shared_household_expenses.user_contribution WHERE account_status != 'DEACTIVATED'";
                         $res = $db->query($sql);
                         $contribution_max = 0;
                         if ($res->num_rows > 0) {
@@ -81,7 +81,7 @@
                         }
 
                         // get each active users contribution
-                        $sql = "SELECT * FROM shared_household_expenses.user_contribution WHERE account_active != 'DEACTIVATED'";
+                        $sql = "SELECT * FROM shared_household_expenses.user_contribution WHERE account_status != 'DEACTIVATED'";
                         $res = $db->query($sql);
 
                         // Create Cards if data has been received
