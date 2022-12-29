@@ -18,6 +18,11 @@ function submitForm(formObject) {
     // Parses all input data from the given form and sends it as POST request to the url
     // defined in form action. Redirects to Dashboard on success or shows an error message
 
+    // check that the pressed submit button is not disabled
+    if (formObject.querySelector(".submitBtn").classList.contains("invalid")) {
+        return;
+    }
+
     // get the target url
     let url = formObject.getAttribute("action");
 

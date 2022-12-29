@@ -19,21 +19,21 @@ function startCheckForm(formID) {
     const formOnPage = document.getElementById(formID);
     if (formOnPage != null) {
         stopCheckForm(formID);
-        formOnPage.addEventListener("keyup", checkForm);
-        formOnPage.addEventListener("click", checkForm);
-        checkForm();
+        formOnPage.addEventListener("keyup", function(dummy) { checkForm(formOnPage); });
+        formOnPage.addEventListener("click", function(dummy) { checkForm(formOnPage); });
+        checkForm(formOnPage);
     }
 }
 
 function stopCheckForm(formID) {
     const formOnPage = document.getElementById(formID);
     if (formOnPage != null) {
-        formOnPage.removeEventListener("keyup", checkForm);
-        formOnPage.removeEventListener("click", checkForm);
+        formOnPage.removeEventListener("keyup", function(dummy) { checkForm(formOnPage); });
+        formOnPage.removeEventListener("click", function(dummy) { checkForm(formOnPage); });
     }
 }
 
-function checkForm() {
+function checkForm(form) {
     // Checks the form using multiple functions. If all functions return true
     // the submit button becomes active. Otherwise the submit button becomes inactive.
     // Returns nothing
@@ -41,7 +41,7 @@ function checkForm() {
     let checkP = checkPatterns();
     let checkD = checkDependencies();
 
-    let submitBtn = document.getElementById("submitBtn");
+    let submitBtn = form.querySelector(".submitBtn");
     if (checkP && checkD) {
         submitBtn.removeAttribute("disabled");
         submitBtn.className = submitBtn.className.replace(" invalid", "");

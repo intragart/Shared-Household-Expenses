@@ -231,7 +231,7 @@
         <div class="edit-details" onclick="addEditPurchase()"><i class="material-icons">add</i></div>
     </div>
     <div class="form-row">
-        <div class="edit-details margin-top-15" onclick="submitForm(editPurchaseForm)"><i id="submitBtn" class="material-icons">save</i></div>
+        <div class="edit-details margin-top-15 submitBtn" onclick="submitForm(editPurchaseForm)"><i id="submitBtn" class="material-icons">save</i></div>
         <div class="edit-details margin-top-15 neg-icon" onclick="deleteData(editPurchaseForm, <?php echo $purchase_id; ?>)"><i class="material-icons">delete</i></div>
     </div>
 </form>

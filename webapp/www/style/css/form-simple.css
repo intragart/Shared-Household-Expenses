@@ -49,7 +49,7 @@
 
 .simple-form input.submit:disabled,
 .simple-form button:disabled,
-#submitBtn.invalid {
+div.submitBtn.invalid {
     cursor: not-allowed !important;
     color: var(--tmp-color-2) !important;
 }

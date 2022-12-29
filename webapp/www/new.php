@@ -171,7 +171,7 @@
                             <input id="num-rows" type="hidden" value="1">
                         </div>
                         <div class="input-80 input-r">
-                            <input id="submitBtn" class="submit btn btn-positive" type="button" value="Senden" onclick="submitForm(newForm)" disabled>
+                            <input id="submitBtn" class="submit btn btn-positive submitBtn" type="button" value="Senden" onclick="submitForm(newForm)" disabled>
                             <input class="btn" type="reset" value="Reset">
                         </div>
                     </div>
