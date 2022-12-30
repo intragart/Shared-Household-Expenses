@@ -28,6 +28,7 @@
         <meta name="author" content="Marco Weingart">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
+        <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js" defer></script>
     </head>
     <body>
         <div class="left-wrapper">
@@ -37,16 +38,38 @@
             <div id="content">
                 <h1>Über dieses Projekt</h1>
                 <hr class="sep">
-                <h2>Copyright</h2>
-                <p>Lizenz: GNU General Public License v3.0 or later
+                <h2>Verwendete Lizenz</h2>
+                <p>
+                    Shared Household Expenses<br />
+                    Copyright (C) 2023  Marco Weingart
+                </p>
+                <p>
+                    This program is free software: you can redistribute it and/or modify<br />
+                    it under the terms of the GNU General Public License as published by<br />
+                    the Free Software Foundation, either version 3 of the License, or<br />
+                    (at your option) any later version.
+                </p>
+                <p>
+                    This program is distributed in the hope that it will be useful,<br />
+                    but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+                    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+                    GNU General Public License for more details.
+                </p>
+                <p>
+                    You should have received a copy of the GNU General Public License<br />
+                    along with this program.  If not, see <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>.
+                </p>
                 <h2>Genutzte Bibliotheken</h2>
                 <p>
-                    KDE 123<br /> <!-- TODO: Verwendete Bibliotheken angeben -->
-                    Another one
+                    CSS-only Material Inputs by Lewis Robinson (12.02.2017)<br />
+                    Verfügbar unter <a href="https://codepen.io/lewisvrobinson/pen/EyZwjR">https://codepen.io/lewisvrobinson/pen/EyZwjR</a>
+                </p>
+                <p>
+                    <div class="github-card" data-github="lepture/github-cards" data-width="400" data-height="177" data-theme="default"></div>
                 </p>
                 <h2>Autor</h2>
                 <p>
-                    Bild, Name, Mail <!-- TODO: Autor angeben -->
+                    <div class="github-card" data-github="intragart" data-width="400" data-height="" data-theme="default"></div>
                 </p>
             </div>
         </div>
