@@ -36,6 +36,11 @@ let rowIndex = 0;
 const parentRow = document.getElementById("row0").outerHTML;
 
 function addRow() {
+    // This function gets the base html for a new contribution line line
+    // from the parentRow constant, makes it optional and changes the ids accordingly.
+    // After that the newly generated html is placed inside the html
+    // document and shown to the user.
+
     // Copy parent Row to new Variable
     let newRow = parentRow;
 
@@ -80,10 +85,11 @@ function addRow() {
 }
 
 function checkCurrentRow() {
+    // Checks if inputUser and inputAmount of current row are not empty.
+    // If they're not empty a new row will be appended to the form.
+
     if (document.getElementById("inputUser"+rowIndex).value != "" &&
     + document.getElementById("inputAmount"+rowIndex).value != "") {
         addRow();
     }
 }
-
-// TODO: Function to Remove Elements

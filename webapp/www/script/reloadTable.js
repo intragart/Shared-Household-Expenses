@@ -15,6 +15,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function reloadTable(tableHolder) {
+    // reloads the get-table.php table by using input 
+    // from and to dates.
+    // 
+    // Args:
+    //     tableHolder (string): id of the dom element which holds the table
 
     // Build the url
     let fromdate = document.getElementById("inputDateFrom").value;

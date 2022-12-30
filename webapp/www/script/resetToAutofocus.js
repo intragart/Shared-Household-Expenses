@@ -18,5 +18,7 @@ const resetButton = document.querySelector('input[type="reset"]');
 resetButton.addEventListener("click", focusAutofocus);
 
 function focusAutofocus() {
+    // sets the focus on the first dom element with the autofocus attribute
+    
     document.querySelector("[autofocus]").focus();
 }

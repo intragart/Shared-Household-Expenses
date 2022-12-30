@@ -15,5 +15,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function removeSpanFullscreen() {
+    // Hides the fullscreen popup
+
     document.getElementById("fullscreen-message").setAttribute("style","display: none");
 }

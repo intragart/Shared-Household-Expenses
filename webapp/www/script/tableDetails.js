@@ -15,13 +15,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function editPurchase(index) {
+    // Load the UI for the given purchase, place the contents in the fullscreen popup
+    // and display it.
+    // 
+    // Args:
+    //     index (int): id of the purchase in question.
+ 
     // Stop any previous running EventListeners on edit Purchase
     stopCheckForm('editPurchaseForm');
 
     // gets the details-content element where the result will be shown and hide the Details
     let targetSpan = document.getElementById("message-content");
     targetSpan.innerHTML = "";
-    //showHideTableDetails(index);
 
     // Get the HTML and Database data to edit the current purchase
     let request = new XMLHttpRequest();
@@ -50,6 +55,12 @@ function editPurchase(index) {
 }
 
 function showPurchaseDetails(index) {
+    // Loads the details of an specific purchase, places them into the fullscreen
+    // popup and makes the popup visible.
+    // 
+    // Args:
+    //     index (int): id of the purchase in question
+
     // Request Details
     let request = new XMLHttpRequest();
     request.open('GET', '/api/get-purchase-details.php?purchase_id='+index);

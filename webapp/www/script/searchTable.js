@@ -19,6 +19,8 @@
 document.getElementById("tableSearch").addEventListener("input", searchTable);
 
 function searchTable() {
+    // Gets the search string from a specific input field and searches all tr-elements
+    // for this string in their contents. Hides all tr that don't match.
 
     // get search string
     let searchString = document.getElementById("tableSearch").value.toLocaleLowerCase();

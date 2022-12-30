@@ -16,7 +16,12 @@
 
 function submitForm(formObject) {
     // Parses all input data from the given form and sends it as POST request to the url
-    // defined in form action. Redirects to Dashboard on success or shows an error message
+    // defined in form action. Reloads the current page on success if the form-tag has no
+    // target attribute. If a target attribute is present the site defined in it is loaded
+    // upon success.
+    // 
+    // Args:
+    //     formObject (dom object): dom object of the form
 
     // check that the pressed submit button is not disabled
     if (formObject.querySelector(".submitBtn").classList.contains("invalid")) {
@@ -69,6 +74,10 @@ function submitForm(formObject) {
 
 function deleteData(formObject, identifier) {
     // Sends a post request to an url which is responsible to delete data by using the identifier
+    // 
+    // Args:
+    //     formObject (dom object): dom object of the form
+    //     identifier (string): identifier of the object to be deleted for the responsible url
 
     // Ask the user before deleting
     let answer = confirm("Sollen dieser Einkauf und dessen Beteiligungen wirklich gelöscht werden?");

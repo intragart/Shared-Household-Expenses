@@ -15,14 +15,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function newUser() {
-    // Stop any previous running EventListeners on edit Purchase
+    // Load the UI for creating a new user, place the contents in the fullscreen popup
+    // and display it.
+
+    // Stop any previous running EventListeners on new User
     stopCheckForm('newUserForm');
 
     // gets the details-content element where the result will be shown and hide the Details
     let targetSpan = document.getElementById("message-content");
     targetSpan.innerHTML = "";
 
-    // Get the HTML and Database data to edit the current purchase
+    // Get the HTML and Database data to create a new user
     let request = new XMLHttpRequest();
     request.open('GET', '/api/new-user.php');
     request.send();
@@ -50,14 +53,20 @@ function newUser() {
 }
 
 function editUser(index) {
-    // Stop any previous running EventListeners on edit Purchase
+    // Load the UI for changing an existing user, place the contents in the fullscreen popup
+    // and display it.
+    // 
+    // Args:
+    //     index (int): user_id for the user to be changed
+
+    // Stop any previous running EventListeners on edit User
     stopCheckForm('editUserForm');
 
     // gets the details-content element where the result will be shown and hide the Details
     let targetSpan = document.getElementById("message-content");
     targetSpan.innerHTML = "";
 
-    // Get the HTML and Database data to edit the current purchase
+    // Get the HTML and Database data to edit the current User
     let request = new XMLHttpRequest();
     request.open('GET', '/api/edit-user.php?user_id='+index);
     request.send();

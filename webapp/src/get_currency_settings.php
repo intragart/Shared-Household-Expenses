@@ -16,6 +16,12 @@
     // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     function get_currency_settings() {
+        // This function checks if the json file with the currency settings exists
+        // and reads the current settings from it. If custom settings are found within
+        // the json file the default values will get overwritten.
+        //
+        // Returns:
+        //     array: contains currency settings
 
         // set the default values
         $currency_code = "EUR";

@@ -14,8 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// listen for changes inside the form
 function startCheckForm(formID) {
+    // Adds Event Listener for the specified html form
+    // 
+    // Args:
+    //     formID (string): id of the dom form element
+
     const formOnPage = document.getElementById(formID);
     if (formOnPage != null) {
         stopCheckForm(formID);
@@ -26,6 +30,11 @@ function startCheckForm(formID) {
 }
 
 function stopCheckForm(formID) {
+    // Removes Event Listener for the specified html form
+    // 
+    // Args:
+    //     formID (string): id of the dom form element
+
     const formOnPage = document.getElementById(formID);
     if (formOnPage != null) {
         formOnPage.removeEventListener("keyup", function(dummy) { checkForm(formOnPage); });
@@ -37,10 +46,16 @@ function checkForm(form) {
     // Checks the form using multiple functions. If all functions return true
     // the submit button becomes active. Otherwise the submit button becomes inactive.
     // Returns nothing
+    // 
+    // Args:
+    //     form (dom element): form to be checked
 
+    // Check the Form using these functions
     let checkP = checkPatterns();
     let checkD = checkDependencies();
 
+    // Locate the submit button and enable it if all checks returned true. Otherwise
+    // disable the submit button.
     let submitBtn = form.querySelector(".submitBtn");
     if (checkP && checkD) {
         submitBtn.removeAttribute("disabled");
@@ -62,6 +77,9 @@ function checkDependencies() {
     // the IDs have more than zero chars the special invalid class gets removed. Returns true if
     // all dependencies of input elements with values have values themselfes. Otherwise returns
     // false
+    // 
+    // Returns:
+    //     boolean: true if all dependencies are ok, otherwise false
 
     // get all input elements that have the attribute pattern
     const dependsInputs = document.querySelectorAll('input[depends], select[depends]');
@@ -129,6 +147,9 @@ function checkPatterns() {
     // Input elements with zero or more chars that match their pattern lose the
     // special invalid class if set. The function returns true if all inputs match their
     // Patterns regardless of their char count. Otherwise returns false.
+    // 
+    // Returns:
+    //     boolean: true if all pattern checks are ok, otherwise false
 
     // get all input elements that have the attribute pattern
     const patternInputs = document.querySelectorAll('input[pattern]');

@@ -16,6 +16,14 @@
     // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     function getRetailerID ($retailer_name) {
+        // gets the retailer_id for the given retailer
+        // 
+        // Args:
+        //     retailer_name (string): Name of the retailer in question
+        // 
+        // Returns:
+        //     int: retailer_id
+
         // Get the informations to connect to database as viewer
         $db_settings = get_db_login("admin");
 

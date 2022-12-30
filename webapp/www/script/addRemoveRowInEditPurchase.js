@@ -15,6 +15,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function addEditPurchase() {
+    // This function reads the base html for a new purchase line with the
+    // html document, makes it optional and changes the ids accordingly.
+    // After that the newly generated html is placed inside the html
+    // document and shown to the user.
+
     // Copy parent Row to new Variable
     let newRow = document.getElementById('new-row-base-html').innerHTML;
 
@@ -60,9 +65,14 @@ function addEditPurchase() {
     rowIndexObj.innerHTML = rowIndex;
 }
 
-// Function to Remove new Rows from Form or mark already existing contributions
-// for deletion when form is saved.
+
 function toggleDeletionOrDeleteContribution(rowIndex) {
+    // Function to Remove new Rows from Form or mark already existing contributions
+    // for deletion when form is saved.
+    //
+    // Args:
+    //     rowIndex (int): index of the row in question
+
     // get the row where the button has been clicked
     let currentRow = document.getElementById("row" + String(rowIndex));
 
@@ -99,6 +109,8 @@ function toggleDeletionOrDeleteContribution(rowIndex) {
                 // no other IDs are present, simply insert
                 removeContribs.value = contribID;
             } else {
+                // other IDs are already present, append at the end of the string
+                // with a leading comma
                 removeContribs.value = removeContribs.value + "," + contribID;
             }
         }
@@ -112,6 +124,9 @@ function toggleDeletionOrDeleteContribution(rowIndex) {
         toggleButton.innerHTML = "remove";
 
         // remove contribution id from deleteContributions input in form
+        // To do this the string is split into an array using "," as delimeter
+        // and adding all ids to be removed back except for the id that should
+        // be excluded from the list
         let alreadyMarkedIds = removeContribs.value.split(",");
         removeContribs.value = "";
         for (let i = 0; i < alreadyMarkedIds.length; i++) {
@@ -121,6 +136,8 @@ function toggleDeletionOrDeleteContribution(rowIndex) {
                     // no other IDs are present, simply insert
                     removeContribs.value = alreadyMarkedIds[i];
                 } else {
+                    // other IDs are already present, append at the end of the string
+                    // with a leading comma
                     removeContribs.value = removeContribs.value + "," + alreadyMarkedIds[i];
                 }
             }

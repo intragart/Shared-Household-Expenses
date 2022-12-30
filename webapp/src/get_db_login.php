@@ -16,6 +16,15 @@
     // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     function get_db_login($db_user) {
+        // Reads the information stored in the settings json for the database
+        // connections and returns it.
+        //
+        // Args:
+        //     db_user (string): database user whose information should be returned
+        //
+        // Returns:
+        //     array: contains informations to connect to the database
+
         // Read and decode settings.json
         $settings_file = file_get_contents(__DIR__.'/../../config/db_settings.json');
         $settings = json_decode($settings_file,true);
