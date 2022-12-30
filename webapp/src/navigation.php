@@ -19,7 +19,7 @@
     <div id="nav_blur">
         <div id="nav_header">
             <a href="/">
-                <img id="nav_logo" alt="Shared Household Expenses" src="/content/img/logo-big.png">
+                <img id="nav_logo" alt="Shared Household Expenses" src="/content/img/logo-light.png">
             </a>
         </div>
         <div id="nav_body">
