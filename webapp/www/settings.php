@@ -151,7 +151,7 @@
                         </div>
                         <div class="form-row">
                             <div class="input-100 input-r">
-                                <input id="BtnNewUser" class="submit btn" type="button" value="Neuer Nutzer" onclick="">
+                                <input id="BtnNewUser" class="submit btn" type="button" value="Neuer Nutzer" onclick="newUser()">
                             </div>
                         </div>
                     </form>

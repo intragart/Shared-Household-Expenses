@@ -11,6 +11,7 @@ GRANT DELETE ON shared_household_expenses.purchase TO 'she_admin'@'localhost';
 GRANT INSERT ON shared_household_expenses.contribution TO 'she_admin'@'localhost';
 GRANT INSERT ON shared_household_expenses.purchase TO 'she_admin'@'localhost';
 GRANT INSERT ON shared_household_expenses.retailer TO 'she_admin'@'localhost';
+GRANT INSERT ON shared_household_expenses.user TO 'she_admin'@'localhost';
 GRANT SELECT ON shared_household_expenses.article_list TO 'she_admin'@'localhost';
 GRANT SELECT ON shared_household_expenses.contribution TO 'she_admin'@'localhost';
 GRANT SELECT ON shared_household_expenses.dashboard TO 'she_admin'@'localhost';

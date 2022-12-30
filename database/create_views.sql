@@ -14,14 +14,23 @@ GROUP BY purchase.purchase_id
 ORDER BY purchase.date DESC, purchase.article ASC;
 
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_contribution` AS
-SELECT contribution.user_id, user.username, user.pretty_name, 
+SELECT user.user_id, user.username, user.pretty_name, 
 CASE
 WHEN user.pretty_name IS NULL THEN user.username
 ELSE user.pretty_name
 END display_name,
-user.start_value, SUM(contribution.amount) AS sum_contributions, user.start_value + SUM(contribution.amount) AS sum_user, user.account_status
-FROM contribution
-RIGHT JOIN user ON contribution.user_id = user.user_id
+user.start_value,
+CASE
+WHEN SUM(contribution.amount) IS NULL THEN 0
+ELSE SUM(contribution.amount)
+END sum_contributions,
+CASE
+WHEN SUM(contribution.amount) IS NULL THEN user.start_value
+ELSE user.start_value + SUM(contribution.amount)
+END sum_user,
+user.account_status
+FROM user
+LEFT JOIN contribution ON user.user_id = contribution.user_id
 GROUP BY contribution.user_id
 ORDER BY user.username;
 
