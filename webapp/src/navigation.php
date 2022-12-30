@@ -44,11 +44,6 @@
                     Einstellungen
                 </div>
             </a>
-            <a href="/phpinfo">
-                <div class="nav_link">
-                    phpinfo();
-                </div>
-            </a>
         </div>
         <div id="nav_footer">
             <!-- TODO: Versionsnummer anpsssen -->
