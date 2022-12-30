@@ -82,7 +82,7 @@
         $db->close();
 
     } catch (Exception $ex) {
-        echo $ex->getMessage();
+        echo "Error while receiving Purchase Detail Data.";
         exit();
     }
 

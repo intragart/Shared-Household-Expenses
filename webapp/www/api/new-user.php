@@ -42,7 +42,7 @@
         $db->close();
 
     } catch (Exception $ex) {
-        echo $ex->getMessage();
+        echo "Error while receiving suggested start value.";
         exit();
     }
 

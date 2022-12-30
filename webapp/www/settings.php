@@ -146,7 +146,7 @@
                                     }
                             
                                 } catch (Exception $ex) {
-                                    echo "Error during SQL Execution.".$ex;
+                                    echo "Error during SQL Execution.";
                                 }
                             ?>
                         </div>

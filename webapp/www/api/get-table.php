@@ -117,7 +117,7 @@
         }
 
     } catch (Exception $ex) {
-        echo "Error during SQL Execution.".$ex;
+        echo "Error during SQL Execution.";
         http_response_code(400);
     }
     

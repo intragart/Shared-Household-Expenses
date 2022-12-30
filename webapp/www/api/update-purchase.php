@@ -198,7 +198,7 @@
 
     } catch (Exception $ex) {
         $db->rollback();
-        echo "Error during SQL Execution.\n".$ex;
+        echo "Error during SQL Execution.\n";
         http_response_code(400);
     }
     
