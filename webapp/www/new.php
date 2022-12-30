@@ -73,7 +73,7 @@
         </div>
         <div class="right-wrapper">
             <div id="content">
-                <h1 id="test123">Neuen Eintrag erfassen</h1> <!-- TODO: ID entfernen -->
+                <h1>Neuen Eintrag erfassen</h1>
                 <hr class="sep">
                 <form action="/api/insert-purchase.php" target="/dashboard" id="newForm" method="post" autocomplete="on" class="detailed-form" novalidate>
                     <div class="form-row">
@@ -168,7 +168,6 @@
                         <br />
                         <div class="input-20 input-l">
                             <input class="btn" id="new-row" type="button" value="+">
-                            <input id="num-rows" type="hidden" value="1">
                         </div>
                         <div class="input-80 input-r">
                             <input id="submitBtn" class="submit btn btn-positive submitBtn" type="button" value="Senden" onclick="submitForm(newForm)" disabled>

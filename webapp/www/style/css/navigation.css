@@ -16,11 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-/* TODO: Remove Debug Colors */
 .nav_link {
     text-align: left;
     padding-left: 20px;
-    /* background-color: red; */
     width: 100%;
     height: 50px;
     line-height: 50px;
@@ -39,7 +37,6 @@
 }
 
 #navigation {
-    /* background-color: beige; */
     background-image: url("/content/img/navigation_background.jpg");
     background-position: left;
     background-size: cover;
@@ -62,7 +59,6 @@
 }
 
 #nav_header {
-    /* background-color: gray; */
     width: 100%;
     height: 100px;
     display: flex;
@@ -75,12 +71,10 @@
 #nav_logo {
     width: 250px;
     height: 75px;
-    /* background-color: aquamarine; */
     display: block;
 }
 
 #nav_body {
-    /* background-color: black; */
     width: 100%;
     flex: 1;
     flex-direction: column;
@@ -91,7 +85,6 @@
 }
 
 #nav_footer {
-    /* background-color: yellow; */
     font-size:8pt;
     bottom: 0em;
     width: 100%;

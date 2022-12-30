@@ -23,11 +23,7 @@ plusButton.addEventListener("click", addRow);
 let triggerNewRow = document.getElementById("inputRemark0");
 triggerNewRow.addEventListener("blur", checkCurrentRow)
 
-// amount of individual persons for a new entry
-// starts at one since one row is hardcoded
-let numRows = 1;
-
-// index for new rows - like numRows but can't be decremented
+// index for new rows - can't be decremented
 // starts with 0 since it is incremented by one before the new
 // line gets created
 let rowIndex = 0;
@@ -61,16 +57,11 @@ function addRow() {
     newRow = newRow.replace('id="inputAmount0"', 'id="inputAmount0" depends="inputUser' + String(rowIndex) + '"');
     newRow = newRow.replace('id="inputRemark0"', 'id="inputRemark0" depends="inputUser' + String(rowIndex) + ' inputAmount' + String(rowIndex) + '"');
 
-    // Replace row specific numbers names and ids with current numRows
+    // Replace row specific numbers names and ids with current rowIndex
     newRow = newRow.replaceAll("row0", "row" + String(rowIndex));
     newRow = newRow.replaceAll("inputUser0", "inputUser" + String(rowIndex));
     newRow = newRow.replaceAll("inputAmount0", "inputAmount" + String(rowIndex));
     newRow = newRow.replaceAll("inputRemark0", "inputRemark" + String(rowIndex));
-
-    // count up
-    numRows = numRows + 1;
-    hiddenFormCounter = document.getElementById("num-rows"); // TODO: Wird der noch benötigt?
-    hiddenFormCounter.value = numRows;
 
     // insert the new row into the document
     document.getElementById("new-row-above").insertAdjacentHTML("beforebegin", newRow);
