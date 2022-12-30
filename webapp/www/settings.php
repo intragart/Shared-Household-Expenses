@@ -36,7 +36,9 @@
         <link type="text/css" rel="stylesheet" href="/style/css/navigation.css">
         <link type="text/css" rel="stylesheet" href="/style/css/form-structure.css">
         <link type="text/css" rel="stylesheet" href="/style/css/form-detailed.css">
+        <link type="text/css" rel="stylesheet" href="/style/css/form-simple.css">
         <link type="text/css" rel="stylesheet" href="/style/css/table.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <meta charset="UTF-8">
         <meta name="keywords" content="">
         <meta name="description" content="">
@@ -45,6 +47,8 @@
         <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
         <script src="/script/checkForm.js" type="text/javascript" defer></script>
         <script src="/script/submitForm.js" type="text/javascript" defer></script>
+        <script src="/script/spanFullscreen.js" type="text/javascript" defer></script>
+        <script src="/script/settings.js" type="text/javascript" defer></script>
     </head>
     <body onload="startCheckForm('globalSettings')">
         <div class="left-wrapper">
@@ -54,98 +58,104 @@
             <div id="content">
                 <h1>Einstellungen</h1>
                 <hr class="sep">
-                <form action="/api/set-global-settings.php" method="post" autocomplete="on" id="globalSettings" class="detailed-form" novalidate>
-                    <div class="form-row">
-                        <h2>Allgemeine Einstellungen</h2>
-                        <p>
-                            Gültig für die gesamte Anwendung.
-                        </p>
-                    </div>
-                    <div class="form-row">
-                        <div class="input-25 input-l">
-                            <input type="text" id="currencyCode" name="currencyCode" pattern="^[A-Z]{3}$" value="<?php echo $currency["currencyCode"]; ?>" required>
-                            <span class="bar"></span>
-                            <label for="currencyCode">Währungskürzel</label>
+                <div>
+                    <form action="/api/set-global-settings.php" method="post" autocomplete="on" id="globalSettings" class="detailed-form" novalidate>
+                        <div class="form-row">
+                            <h2>Allgemeine Einstellungen</h2>
+                            <p>
+                                Gültig für die gesamte Anwendung.
+                            </p>
                         </div>
-                        <div class="input-25 input-l">
-                            <input type="text" id="currencySymbol" name="currencySymbol" pattern="^.{1}$" value="<?php echo $currency["currencySymbol"]; ?>" required>
-                            <span class="bar"></span>
-                            <label for="currencySymbol">Währungszeichen</label>
+                        <div class="form-row">
+                            <div class="input-25 input-l">
+                                <input type="text" id="currencyCode" name="currencyCode" pattern="^[A-Z]{3}$" value="<?php echo $currency["currencyCode"]; ?>" required>
+                                <span class="bar"></span>
+                                <label for="currencyCode">Währungskürzel</label>
+                            </div>
+                            <div class="input-25 input-l">
+                                <input type="text" id="currencySymbol" name="currencySymbol" pattern="^.{1}$" value="<?php echo $currency["currencySymbol"]; ?>" required>
+                                <span class="bar"></span>
+                                <label for="currencySymbol">Währungszeichen</label>
+                            </div>
+                            <div class="input-25 input-l">
+                                <input type="text" id="currencyDecimal" name="currencyDecimal" pattern="^[,\.]{1}$" value="<?php echo $currency["currencyDecimal"]; ?>" required>
+                                <span class="bar"></span>
+                                <label for="currencyDecimal">Dezimaltrennung</label>
+                            </div>
+                            <div class="input-25 input-l">
+                                <select id="currencyPosition" name="currencyPosition" required>
+                                    <option <?php if ($currency["currencyPosition"] == "after") { echo "selected"; } ?> value="after">Dahinter</option>
+                                    <option <?php if ($currency["currencyPosition"] == "before") { echo "selected"; } ?> value="before">Davor</option>
+                                </select>
+                                <span class="bar"></span>
+                                <label for="currencyPosition">Währungsposition</label>
+                            </div>
                         </div>
-                        <div class="input-25 input-l">
-                            <input type="text" id="currencyDecimal" name="currencyDecimal" pattern="^[,\.]{1}$" value="<?php echo $currency["currencyDecimal"]; ?>" required>
-                            <span class="bar"></span>
-                            <label for="currencyDecimal">Dezimaltrennung</label>
+                        <div class="form-row">
+                            <div class="input-100 input-r">
+                                <input id="submitBtn" class="submit btn btn-positive submitBtn" type="button" value="Übernehmen" onclick="submitForm(globalSettings)" disabled>
+                            </div>
                         </div>
-                        <div class="input-25 input-l">
-                            <select id="currencyPosition" name="currencyPosition" required>
-                                <option <?php if ($currency["currencyPosition"] == "after") { echo "selected"; } ?> value="after">Dahinter</option>
-                                <option <?php if ($currency["currencyPosition"] == "before") { echo "selected"; } ?> value="before">Davor</option>
-                            </select>
-                            <span class="bar"></span>
-                            <label for="currencyPosition">Währungsposition</label>
+                    </form>
+                </div>
+                <div>
+                    <form autocomplete="off" id="updateUsers" class="detailed-form" novalidate>
+                        <div class="form-row">
+                            <h2>Nutzereinstellungen</h2>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="input-100 input-r">
-                            <input id="submitBtn" class="submit btn btn-positive" type="button" value="Übernehmen" onclick="submitForm(globalSettings)" disabled>
-                        </div>
-                    </div>
-                </form>
-                <form autocomplete="off" id="updateUsers" class="detailed-form" novalidate>
-                    <div class="form-row">
-                        <h2>Nutzereinstellungen</h2>
-                    </div>
-                    <div class="form-row">
-                        <?php
-                            try {
-                                // Get table data
-                                $select_statement = "SELECT user_id, username, pretty_name, start_value, account_status FROM user WHERE account_status <> 'DEACTIVATED'";
-                                $res = $db->query($select_statement);
-                        
-                                // Create Table Head if data has been received
-                                if ($res->num_rows > 0) {
-                                    echo "<table class=\"simpletable\">\n";
-                                    echo "<tr class=\"simpletable\">\n";
-                                    echo "<th class=\"simpletable\">Nutzername</th>\n";
-                                    echo "<th class=\"simpletable\">Anzeigename</th>\n";
-                                    echo "<th class=\"simpletable\">Startwert</th>\n";
-                                    echo "<th class=\"simpletable\">Status</th>\n";
-                                    echo "</tr>\n";
-                                } else {
-                                    echo "<p>No Data.</p>";
+                        <div class="form-row">
+                            <?php
+                                try {
+                                    // Get table data
+                                    $select_statement = "SELECT user_id, username, pretty_name, start_value, account_status FROM user WHERE account_status <> 'DEACTIVATED'";
+                                    $res = $db->query($select_statement);
+                            
+                                    // Create Table Head if data has been received
+                                    if ($res->num_rows > 0) {
+                                        echo "<table class=\"simpletable borderless\">\n";
+                                        echo "<tr class=\"simpletable\">\n";
+                                        echo "<th class=\"simpletable borderless\">Nutzername</th>\n";
+                                        echo "<th class=\"simpletable borderless\">Anzeigename</th>\n";
+                                        echo "<th class=\"simpletable borderless\">Startwert</th>\n";
+                                        echo "<th class=\"simpletable borderless\">Status</th>\n";
+                                        echo "<th class=\"simpletable borderless\"></th>\n";
+                                        echo "</tr>\n";
+                                    } else {
+                                        echo "<p>No Data.</p>";
+                                    }
+                            
+                                    // Display the received data in table
+                                    while ($row = $res->fetch_assoc()) {
+                                        echo "<tr class='simpletable' id='user-".$row['user_id']."'>";
+                                        echo "<td class=\"simpletable borderless\">".$row['username']."</td>";
+                                        echo "<td class=\"simpletable borderless\">".$row['pretty_name']."</td>";
+                                        echo "<td class=\"simpletable borderless\">";
+                                        if ($currency["currencyPosition"] == "before") { echo $currency["currencySymbol"]." "; }
+                                        echo str_replace(".", $currency["currencyDecimal"], $row['start_value']);
+                                        if ($currency["currencyPosition"] == "after") { echo " ".$currency["currencySymbol"]; }
+                                        echo "</td>";
+                                        echo "<td class=\"simpletable borderless\">".$row['account_status']."</td>";
+                                        echo "<td class=\"simpletable borderless\"><div class=\"edit-details\" onclick=\"editUser(".$row['user_id'].")\"><i class=\"material-icons submitBtn\">edit</i></div></td>";
+                                        echo "</tr>";
+                                    }
+                            
+                                    // Close Table if data has been received
+                                    if ($res->num_rows > 0) {
+                                        echo "</table>";
+                                    }
+                            
+                                } catch (Exception $ex) {
+                                    echo "Error during SQL Execution.".$ex;
                                 }
-                        
-                                // Display the received data in table
-                                while ($row = $res->fetch_assoc()) {
-                                    echo "<tr class='simpletable' id='user-".$row['user_id']."'>";
-                                    echo "<td class=\"simpletable\">".$row['username']."</td>";
-                                    echo "<td class=\"simpletable\">".$row['pretty_name']."</td>";
-                                    echo "<td class=\"simpletable\">";
-                                    if ($currency["currencyPosition"] == "before") { echo $currency["currencySymbol"]." "; }
-                                    echo str_replace(".", $currency["currencyDecimal"], $row['start_value']);
-                                    if ($currency["currencyPosition"] == "after") { echo " ".$currency["currencySymbol"]; }
-                                    echo "</td>";
-                                    echo "<td class=\"simpletable\">".$row['account_status']."</td>";
-                                    echo "</tr>";
-                                }
-                        
-                                // Close Table if data has been received
-                                if ($res->num_rows > 0) {
-                                    echo "</table>";
-                                }
-                        
-                            } catch (Exception $ex) {
-                                echo "Error during SQL Execution.".$ex;
-                            }
-                        ?>
-                    </div>
-                    <div class="form-row">
-                        <div class="input-100 input-r">
-                            <input id="BtnNewUser" class="submit btn" type="button" value="Neuer Nutzer" onclick="">
+                            ?>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-row">
+                            <div class="input-100 input-r">
+                                <input id="BtnNewUser" class="submit btn" type="button" value="Neuer Nutzer" onclick="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <br />
             </div>
         </div>
