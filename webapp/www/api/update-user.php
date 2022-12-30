@@ -56,9 +56,12 @@
             $pretty_name = null;
         }
 
+        // format the start value
+        $start_value = str_replace(",", ".", $_POST["inputStartValue"]);
+
         // update the user
         $sql = $db->prepare("UPDATE user SET username = ?, pretty_name = ?, start_value = ?, account_status = ? WHERE user_id = ?");
-        $sql->bind_param('ssdsi', $_POST["inputUsername"], $pretty_name, $_POST["inputStartValue"], $_POST['inputAccountStatus'], $_POST['userId']);
+        $sql->bind_param('ssdsi', $_POST["inputUsername"], $pretty_name, $start_value, $_POST['inputAccountStatus'], $_POST['userId']);
         $sql->execute();
         $sql->free_result();
 

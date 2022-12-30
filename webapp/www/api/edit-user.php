@@ -28,7 +28,7 @@
         while ($row = $res->fetch_assoc()) {
             $username = $row['username'];
             $pretty_name = $row['pretty_name'];
-            $start_value = $row['start_value'];
+            $start_value = str_replace(".", $currency["currencyDecimal"], $row['start_value']);
             $account_status = $row['account_status'];
         }
 
