@@ -67,7 +67,10 @@
                     <div class="github-card" data-github="lepture/github-cards" data-width="400" data-height="177" data-theme="default"></div>
                 </p>
                 <p>
-                <div class="github-card" data-github="olivierlacan/keep-a-changelog" data-width="400" data-height="177" data-theme="default"></div>
+                    <div class="github-card" data-github="olivierlacan/keep-a-changelog" data-width="400" data-height="177" data-theme="default"></div>
+                </p>
+                <p>
+                    <div class="github-card" data-github="badges/shields" data-width="400" data-height="177" data-theme="default"></div>
                 </p>
                 <h2>Autor</h2>
                 <p>
