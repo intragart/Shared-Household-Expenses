@@ -45,7 +45,6 @@
             </a>
         </div>
         <div id="nav_footer">
-            <!-- TODO: Versionsnummer anpsssen -->
             <a href="https://github.com/intragart/Shared-Household-Expenses" class="footer_link" target="_blank">GitHub</a>&nbsp;- <?php include_once("../../version"); ?> -&nbsp;<a href="/about" class="footer_link">Über</a>
         </div>
     </div>
