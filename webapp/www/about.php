@@ -23,8 +23,7 @@
         <link type="text/css" rel="stylesheet" href="/style/css/general.css">
         <link type="text/css" rel="stylesheet" href="/style/css/navigation.css">
         <meta charset="UTF-8">
-        <meta name="keywords" content="">
-        <meta name="description" content="">
+        <meta name="description" content="Contains information about the Project.">
         <meta name="author" content="Marco Weingart">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
