@@ -34,7 +34,6 @@
         <meta name="description" content="Shows all Purchase within a defined timerange. Defaults to last year from now.">
         <meta name="author" content="Marco Weingart">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
         <script src="/script/tableDetails.js" type="text/javascript" defer></script>
         <script src="/script/reloadTable.js" type="text/javascript" defer></script>
         <script src="/script/searchTable.js" type="text/javascript" defer></script>

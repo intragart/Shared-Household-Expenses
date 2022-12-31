@@ -60,7 +60,6 @@
         <meta name="description" content="New Purchases can be added here.">
         <meta name="author" content="Marco Weingart">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Pragma" content="no-cache"> <!-- TODO: Entfernen -->
         <script src="/script/checkForm.js" type="text/javascript" defer></script>
         <script src="/script/addRemoveRowInNew.js" type="text/javascript" defer></script>
         <script src="/script/resetToAutofocus.js" type="text/javascript" defer></script>
