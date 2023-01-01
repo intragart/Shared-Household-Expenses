@@ -1,0 +1,19 @@
+{
+    "general" : {
+        "fqdn" : "127.0.0.1",
+        "port" : 3306,
+        "database" : "shared_household_expenses",
+        "socket" : "ssl"
+    },
+
+    "users" : {
+        "login" : {
+            "username" : "she_login",
+            "password" : "1234"
+        },
+        "admin" : {
+            "username" : "she_admin",
+            "password" : "1234"
+        }
+    }
+}

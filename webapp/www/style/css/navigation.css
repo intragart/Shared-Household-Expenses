@@ -1,0 +1,96 @@
+/*
+    Shared Household Expenses
+    Copyright (C) 2023  Marco Weingart
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+.nav_link {
+    text-align: left;
+    padding-left: 20px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    transition: var(--trans-time) ease all;
+}
+
+.nav_link,
+.footer_link,
+#nav_footer {
+    color: #ffffff;
+}
+
+.nav_link:hover {
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+}
+
+#navigation {
+    background-image: url("/content/img/navigation_background.jpg");
+    background-position: left;
+    background-size: cover;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    box-shadow: 0 0 5px 0;
+}
+
+#nav_blur {
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 2000px rgba(0, 0, 0, .5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+#nav_header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+#nav_logo {
+    width: 250px;
+    height: 75px;
+    display: block;
+}
+
+#nav_body {
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    margin-bottom: 35px;
+}
+
+#nav_footer {
+    font-size:8pt;
+    bottom: 0em;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    position: absolute;
+    line-height: 35px;
+    justify-content: center;
+}

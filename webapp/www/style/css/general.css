@@ -1,0 +1,134 @@
+/*
+    Shared Household Expenses
+    Copyright (C) 2023  Marco Weingart
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+:root {
+    --bg-color: white;
+    --hl-color: #0578f0;
+    --tmp-color: #4d4d4d;
+    --tmp-color-2: #cbcbcb;
+    --neg-color: #cc0c15;
+    --pos-color: #11ad47;
+    --trans-time: 300ms;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0px;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+hr.sep {
+    background: var(--hl-color);
+    box-shadow: none;
+    border: none;
+    height: 2px;
+    width: 25%;
+    margin: 0px auto 0px auto;
+}
+
+.left-wrapper,
+.right-wrapper {
+    display: inline-block;
+    z-index: 10;
+}
+
+.right-wrapper {
+    margin-left: 10px;
+    width: 100%;
+}
+
+.disable-select {
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+  }
+
+.hidden {
+    display: none;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+    float: right;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#fullscreen-message {
+    position: absolute; 
+    z-index: 20;
+    display: none;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#block-background {
+    position: absolute;
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    opacity: 80%;
+    background-color: var(--tmp-color);
+}
+
+#message-body {
+    position: relative;
+    padding: 30px;
+    border-radius: 30px;
+    z-index: 40;
+    background-color: var(--bg-color);
+    opacity: 100%;
+    max-width: 750px;
+    max-height: 80%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+#close-fullscreen-message {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}

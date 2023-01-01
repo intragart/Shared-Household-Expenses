@@ -1,0 +1,85 @@
+/*
+    Shared Household Expenses
+    Copyright (C) 2023  Marco Weingart
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+.maintable {
+    border-collapse: collapse;
+    margin: 0 auto 0 auto;
+    position: relative;
+    text-align: left;
+}
+
+tr.maintable {
+    border: none;
+    border-collapse: collapse;
+}
+
+td.maintable {
+    z-index: 11;
+}
+
+th.maintable,
+td.maintable {
+    border: none;
+    border-collapse: collapse;
+    padding: 15px 30px;
+}
+
+.maintable-head {
+    background-color: var(--hl-color);
+    color: white;
+    text-transform: uppercase;
+    position: sticky;
+    z-index: 12;
+    top: 0;
+}
+
+.maintable-row {
+    cursor: pointer;
+    transition: var(--trans-time) ease all;
+}
+
+.maintable-row:hover {
+    background-color: var(--tmp-color-2);
+}
+
+.maintable-details {
+    border-left: 1px solid black;
+    position: relative;
+}
+  
+table.simpletable,
+tr.simpletable,
+th.simpletable,
+td.simpletable {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+table.simpletable {
+    width: 100%;
+}
+
+th.simpletable,
+td.simpletable {
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.borderless {
+    border: none !important;
+}

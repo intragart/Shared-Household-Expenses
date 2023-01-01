@@ -1,0 +1,154 @@
+/*
+    Shared Household Expenses
+    Copyright (C) 2023  Marco Weingart
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**********************************************************
+The following code partially contains contents from another source.
+
+Title: CSS-only Material Inputs
+Author: Lewis Robinson
+Date: February 12, 2017
+Availability: https://codepen.io/lewisvrobinson/pen/EyZwjR
+
+Copyright (c) 2022 by Lewis Robinson (https://codepen.io/lewisvrobinson/pen/EyZwjR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+***********************************************************/
+
+.detailed-form input[type="text"],
+.detailed-form input[type="date"],
+.detailed-form input[type="search"],
+.detailed-form select {
+    width: 100%;
+    height: 52px;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: none;
+    font-size: 12pt;
+    color: var(--tmp-color);
+    padding: 20px 10px 10px 5px;
+    display: block;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--tmp-color);
+    flex: none;
+}
+
+.detailed-form label {
+    color: var(--tmp-color);
+    font-size: 12pt;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 10px;
+    top: 25px;
+    transition: var(--trans-time) ease all;
+}
+
+.detailed-form input:focus,
+.detailed-form select:focus {
+    outline: none;
+}
+
+.detailed-form input:focus ~ label,
+.detailed-form input:valid ~ label,
+.detailed-form select:focus ~ label,
+.detailed-form select:valid ~ label {
+    top: 0px;
+    font-size: 10pt;
+    color: var(--hl-color);
+}
+
+.detailed-form .bar {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 2px;
+    top: -1px;
+    background: var(--hl-color);
+    transition: var(--trans-time) ease all;
+    left: 0%;
+}
+
+.detailed-form input:focus ~ .bar,
+.detailed-form select:focus ~ .bar {
+    width: 100%;
+}
+
+/****************
+* END OF CITATION
+****************/
+
+.detailed-form .btn {
+    all: unset;
+    background: var(--tmp-color);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    outline: none;
+    cursor: pointer;
+    transition: var(--trans-time) ease all;
+    border-bottom: none;
+
+}
+
+.detailed-form .btn-positive {
+    background: var(--hl-color);
+}
+
+.detailed-form input.submit:disabled,
+.detailed-form button:disabled {
+    cursor: not-allowed;
+    background: var(--tmp-color-2);
+}
+
+.detailed-form .btn:hover,
+.detailed-form .btn:focus,
+.detailed-form .btn:focus-visible {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.74);
+}
+
+.detailed-form input.invalid ~ label,
+.detailed-form select.invalid ~ label {
+    top: 0px;
+    font-size: 10pt;
+    color: var(--neg-color);
+}
+
+.detailed-form input.invalid ~ .bar,
+.detailed-form select.invalid ~ .bar {
+    width: 100%;
+    background: var(--neg-color);
+}
