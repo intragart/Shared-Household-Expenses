@@ -46,6 +46,11 @@
         exit();
     }
 
+    // set standard value if response from database was empty
+    if (!isset($suggested_start_value)) {
+        $suggested_start_value = "0.00";
+    }
+
     // format start value
     $suggested_start_value = str_replace(".", $currency["currencyDecimal"], $suggested_start_value);
 
