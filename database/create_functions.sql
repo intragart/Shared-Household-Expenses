@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 USE `shared_household_expenses`;
 
+DELIMITER $$
+
 CREATE FUNCTION `login`(
 	`try_username` VARCHAR(255),
 	`try_password` VARCHAR(255)
@@ -43,4 +45,6 @@ BEGIN
   
   RETURN returned_user_id;
 
-END
+END;
+$$
+DELIMITER ;
