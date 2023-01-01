@@ -1,4 +1,4 @@
-# ![Shared Household Expenses](https://github.com/intragart/Shared-Household-Expenses/blob/master/webapp/www/content/img/logo-light.png)
+# ![Shared Household Expenses](https://github.com/intragart/Shared-Household-Expenses/raw/master/webapp/www/content/img/logo-light.png)
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/intragart/Shared-Household-Expenses?include_prereleases)
 ![GitHub last commit](https://img.shields.io/github/last-commit/intragart/Shared-Household-Expenses)
