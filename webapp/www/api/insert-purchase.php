@@ -116,11 +116,17 @@
         }
 
         // Get the next purchase_id from purchase
+        $next_purchase_id;
         $sql = $db->prepare("SELECT MAX(purchase_id)+1 AS next_id FROM dashboard");
         $sql->execute();
-        $sql->bind_result($next_purchase_id);
+        $sql->bind_result($next_purchase_id); // changes with valid result
         $sql->fetch();
         $sql->free_result();
+
+        // set default value of 1 for purchase_id (needed for very first entry)
+        if (!isset($next_purchase_id)) {
+            $next_purchase_id = 1;
+        }
 
         // insert the purchase
         $sql = $db->prepare("INSERT INTO purchase(purchase_id, article, date, retailer_id) VALUES (?, ?, ?, ?)");
