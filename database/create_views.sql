@@ -53,7 +53,7 @@ GROUP BY contribution.user_id
 ORDER BY user.username;
 
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `dashboard_detail` AS
-SELECT contribution.purchase_id, contribution.contribution_id, user.username, contribution.amount, contribution.currency, contribution.comment
+SELECT contribution.purchase_id, contribution.contribution_id, user.username, contribution.amount, contribution.comment
 FROM contribution
 LEFT JOIN user ON contribution.user_id = user.user_id
 ORDER BY purchase_id ASC, username ASC, contribution_id ASC;

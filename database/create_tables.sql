@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS `contribution` (
 	`timestamp_created` TIMESTAMP NOT NULL DEFAULT current_timestamp(),
 	`timestamp_updated` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 	`amount` DECIMAL(20,2) NOT NULL,
-	`currency` TINYTEXT NOT NULL DEFAULT 'EUR' COLLATE 'utf8mb4_unicode_ci',
 	`comment` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
 	PRIMARY KEY (`purchase_id`, `contribution_id`) USING BTREE,
 	INDEX `fk_user` (`user_id`) USING BTREE,
