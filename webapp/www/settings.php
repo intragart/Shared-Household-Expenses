@@ -20,9 +20,6 @@
     require("../src/get_db_login.php");
     $db_settings = get_db_login("admin");
 
-    // connect to database
-    $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);
-
     // Get the settings for the used currency
     require_once("../src/get_currency_settings.php");
     $currency = get_currency_settings();
@@ -105,6 +102,9 @@
                         <div class="form-row">
                             <?php
                                 try {
+                                    // connect to database
+                                    $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);
+
                                     // Get table data
                                     $select_statement = "SELECT user_id, username, pretty_name, start_value, account_status FROM user WHERE account_status <> 'DEACTIVATED'";
                                     $res = $db->query($select_statement);
@@ -141,6 +141,11 @@
                                     // Close Table if data has been received
                                     if ($res->num_rows > 0) {
                                         echo "</table>";
+                                    }
+
+                                    // close db connection
+                                    if (isset($db)) {
+                                        $db->close();
                                     }
                             
                                 } catch (Exception $ex) {

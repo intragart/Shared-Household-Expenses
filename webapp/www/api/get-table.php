@@ -71,10 +71,12 @@
     }
     $currency = get_currency_settings();
 
-    // connect to database and start a transaction
-    $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]); 
+     
 
     try {
+        // connect to database
+        $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);
+
         // Get table data
         $res = $db->query($select_statement);
 
@@ -121,6 +123,9 @@
         http_response_code(400);
     }
     
-    $db->close();
+    // close db connection
+    if (isset($db)) {
+        $db->close();
+    }
 
 ?>
