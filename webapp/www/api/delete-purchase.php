@@ -27,7 +27,12 @@
     $db_settings = get_db_login("admin");
 
     // connect to database and start a transaction
-    $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]); 
+    $db = new MySQLi($db_settings[0], $db_settings[1], $db_settings[2], $db_settings[3], $db_settings[4], $db_settings[5]);
+    
+    // disable autocommit and set isolation level to serialize
+    $db->autocommit(false);
+    $db->query("SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+    
     $db->begin_transaction(MYSQLI_TRANS_START_WITH_CONSISTENT_SNAPSHOT);
 
     try {
